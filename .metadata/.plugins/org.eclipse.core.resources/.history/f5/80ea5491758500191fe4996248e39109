@@ -1,0 +1,17 @@
+package br.ufu.facom.poo;
+
+import javax.swing.JFrame;
+
+public class Menu {
+	private JFrame frame;
+	
+	public Menu() {
+		frame = new JFrame("Pong");
+	}
+	
+	public static void main(String[] args) {
+		PongGame p = new PongGame();
+		p.inicializar();
+		p.iniciar();
+	}
+}

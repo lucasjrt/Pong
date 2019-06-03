@@ -1,0 +1,32 @@
+package br.facom.ufu.poo.objetos;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import br.facom.ufu.poo.logica.Pontuacao;
+import br.facom.ufu.poo.utilidades.Constantes;
+
+public class Jogador {
+	private int idJogador;
+	private String nomeJogador; // Pode ser null
+	private Bloco jogador;
+	private final int LARGURA_JOGADOR = 40;
+	private final int ALTURA_JOGADOR = 40;
+	private Pontuacao pontos;
+
+	/**
+	 * 
+	 * @param idJogador Maximo dois jogadores
+	 */
+	public Jogador(int idJogador) {
+		this.idJogador = idJogador;
+		int xPos = Constantes.LARGURA_TELA + (idJogador == 0 ? LARGURA_JOGADOR >> 1 : -LARGURA_JOGADOR >> 1);
+		this.jogador = new Bloco(new Rectangle(LARGURA_JOGADOR, ALTURA_JOGADOR), xPos, (Constantes.ALTURA_TELA >> 1),
+				idJogador);
+	}
+
+	public void draw(Graphics g) {
+		jogador.draw(g);
+	}
+
+}

@@ -1,0 +1,7 @@
+package br.ufu.facom.poo;
+
+import br.facom.ufu.poo.objetos.FBola;
+
+public class Bola extends FBola{
+
+}

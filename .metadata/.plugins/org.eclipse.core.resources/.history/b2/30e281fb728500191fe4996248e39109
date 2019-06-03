@@ -1,0 +1,14 @@
+package br.ufu.facom.poo;
+
+import br.facom.ufu.poo.FPong;
+
+public class PongGame extends FPong{
+	private static final long serialVersionUID = 1L;
+
+	public static void main(String[] args) {
+		PongGame p = new PongGame();
+		System.out.println("Teste");
+//		p.inicializar();
+//		p.iniciar();
+	}
+}

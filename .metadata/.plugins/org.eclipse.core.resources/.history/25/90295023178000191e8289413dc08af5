@@ -1,0 +1,12 @@
+package br.facom.ufu.poo;
+
+public class Tela {
+	
+	private int WIDTH, HEIGHT;
+	public int[] pixels;
+	
+	public Tela(int width, int height) {
+		
+	}
+
+}

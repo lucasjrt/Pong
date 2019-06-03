@@ -1,0 +1,29 @@
+package br.facom.ufu.poo.objetos;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public class Bola {
+	private Rectangle bordas; // O circulo e renderizado como uma elipse, portanto precisa de um retangulo
+	private int velocidade;
+	private int x, y;
+	public Bola(int raio, int velocidade) {
+		this.velocidade = velocidade;
+		bordas = new Rectangle();
+		bordas.x = x - 2 * raio;
+		bordas.y = y - 2 * raio;
+		bordas.width = raio;
+		bordas.height = raio;
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(bordas.x, bordas.y, bordas.width, bordas.height);
+	}
+	
+	public void aplicaForca(int x, int y) {
+		
+	}
+	
+}

@@ -1,0 +1,42 @@
+package br.facom.ufu.poo.objetos;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public class FBola {
+	public final int VELOCIDADE_CRESCENTE = 0;
+	public final int VELOCIDADE_BAIXA = 1;
+	public final int VELOCIDADE_MEDIA = 2;
+	public final int VELOCIDADE_ALTA = 3;
+	private final int TAMANHO_BOLA = 10;
+	private Rectangle bordas;	// O circulo e renderizado como uma elipse, portanto precisa de um retangulo
+	private int velocidade;
+	private int x, y;
+	public FBola() {
+		bordas = new Rectangle();
+		bordas.x = x - (TAMANHO_BOLA >> 1);
+		bordas.y = y - (TAMANHO_BOLA >> 1);
+		bordas.width = TAMANHO_BOLA;
+		bordas.height = TAMANHO_BOLA;
+	}
+	
+	public void setPosicao(int x, int y) {
+		this.x = x;
+		this.y = y;
+		bordas.x = x - 2 * TAMANHO_BOLA;
+		bordas.y = y - 2 * TAMANHO_BOLA;
+	}
+	
+	public void setVelocidade(int velocidade) {
+		this.velocidade = velocidade;
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(bordas.x, bordas.y, bordas.width, bordas.height);
+		g.setColor(Color.blue);
+		g.fillRect(x, y, 3, 3);
+		g.setColor(Color.white);
+	}
+}

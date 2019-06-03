@@ -1,0 +1,10 @@
+package br.facom.ufu.poo.logica;
+
+import java.util.ArrayList;
+
+import br.facom.ufu.poo.objetos.FJogador;
+
+public class Mediador {
+	private ArrayList<FJogador> jogadores;
+
+}

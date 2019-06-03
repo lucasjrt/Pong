@@ -1,0 +1,26 @@
+1559435542769	Delete element
+1559496017729	Rename local variable 'playerId'
+1559496024579	Rename field 'playerId'
+1559496376571	Move compilation unit
+1559496795859	Move compilation unit
+1559496849870	Move compilation unit
+1559496858147	Move compilation unit
+1559500504185	Rename field 'FRAME_RATE'
+1559501677996	Rename type 'Bloco'
+1559501683081	Rename type 'Bola'
+1559501686264	Rename type 'Jogador'
+1559502288462	Rename field 'CRESCENTE'
+1559502297200	Rename field 'BAIXA'
+1559502305840	Rename field 'MEDIA'
+1559502312273	Rename field 'ALTA'
+1559504661031	Rename method 'draw'
+1559504682160	Rename method 'start'
+1559504698162	Rename method 'stop'
+1559504721308	Rename method 'init'
+1559504758118	Rename method 'move'
+1559504958530	Delete element
+1559504997923	Delete element
+1559505854115	Rename type 'Pong'
+1559570632869	Rename method 'inicializar'
+1559570836257	Move compilation unit
+1559570839055	Delete element

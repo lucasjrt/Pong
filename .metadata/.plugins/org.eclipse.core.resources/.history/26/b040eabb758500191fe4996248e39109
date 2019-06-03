@@ -1,0 +1,23 @@
+package br.ufu.facom.poo;
+
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
+import javax.swing.JFrame;
+
+public class Menu {
+	private JFrame frame;
+	
+	public Menu() {
+		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+		frame = new JFrame("Pong");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	public static void main(String[] args) {
+		PongGame p = new PongGame();
+		p.inicializar();
+		p.iniciar();
+	}
+}

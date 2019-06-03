@@ -1,0 +1,7 @@
+package br.ufu.facom.poo;
+
+public class Menu {
+	public Menu() {
+		
+	}
+}

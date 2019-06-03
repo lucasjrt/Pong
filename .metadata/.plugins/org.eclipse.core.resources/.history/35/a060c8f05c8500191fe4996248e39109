@@ -1,0 +1,6 @@
+package br.facom.ufu.poo.logica;
+
+public class Mediador {
+	private ArrayList<Jogador> jogadores;
+
+}

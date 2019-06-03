@@ -1,0 +1,15 @@
+package br.ufu.facom.poo;
+
+public class Menu {
+	private JFrame frame;
+	
+	public Menu() {
+		
+	}
+	
+	public static void main(String[] args) {
+		PongGame p = new PongGame();
+		p.inicializar();
+		p.iniciar();
+	}
+}

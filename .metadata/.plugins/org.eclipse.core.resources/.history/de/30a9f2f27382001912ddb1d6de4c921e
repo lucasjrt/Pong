@@ -1,0 +1,36 @@
+package br.facom.ufu.poo.objetos;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import br.facom.ufu.poo.Coordenada;
+
+public class Bloco{
+	private static final long serialVersionUID = 1L;
+	private Rectangle bloco;
+	private boolean colisao;
+	private Color cor = Color.white;
+	private Coordenada pos;
+	public Bloco(Rectangle bloco, boolean colisao, Canvas canvas) {
+		this.bloco = bloco;
+		this.pos.x = bloco.x + ((bloco.width - bloco.x) >> 1);
+		this.pos.y = bloco.y + ((bloco.height - bloco.y) >> 1);
+		this.colisao = colisao;
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(cor);
+		g.fillRect(bloco.x, bloco.y, bloco.width, bloco.height);
+		
+	}
+	
+	public void setColisao(boolean colisao) {
+		this.colisao = colisao;
+	}
+	
+	public boolean colide() {
+		return colisao;
+	}
+}

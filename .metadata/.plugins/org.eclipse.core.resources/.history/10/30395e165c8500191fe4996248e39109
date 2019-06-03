@@ -1,0 +1,6 @@
+package br.facom.ufu.poo.objetos;
+
+public class Constantes {
+	public final int LARGURA_TELA = 800;
+	public final int ALTURA_TELA = 600;
+}

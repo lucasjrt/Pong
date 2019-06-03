@@ -1,0 +1,6 @@
+package br.facom.ufu.poo.objetos;
+
+public class Mediador {
+//	private FJogador[] jogadores;
+//	private FBola bola;
+}

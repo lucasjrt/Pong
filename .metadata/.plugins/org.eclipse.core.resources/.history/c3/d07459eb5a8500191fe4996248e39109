@@ -1,0 +1,16 @@
+package br.facom.ufu.poo.logica;
+
+import java.awt.Graphics;
+
+public class Pontuacao {
+
+	private String texto = "Pontuação";
+	
+	public Pontuacao() {
+		
+	}
+	
+	public void draw(Graphics g) {
+		
+	}
+}

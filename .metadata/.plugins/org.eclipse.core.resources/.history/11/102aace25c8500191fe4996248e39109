@@ -1,0 +1,26 @@
+package br.facom.ufu.poo.objetos;
+
+import java.awt.Rectangle;
+
+import br.facom.ufu.poo.utilidades.Constantes;
+
+public class Jogador {
+	private int idJogador;
+	private String nomeJogador; // Pode ser null
+	private Bloco jogador;
+
+	/**
+	 * 
+	 * @param idJogador Maximo dois jogadores
+	 */
+	public Jogador(int idJogador) {
+		this.idJogador = idJogador;
+		this.jogador = new Bloco(new Rectangle(10, 40), idJogador * Constantes.LARGURA_TELA,
+				(Constantes.ALTURA_TELA >> 1), idJogador);
+	}
+	
+	public void draw(Graphics g) {
+		
+	}
+
+}

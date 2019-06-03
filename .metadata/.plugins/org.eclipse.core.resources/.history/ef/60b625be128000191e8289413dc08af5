@@ -1,0 +1,26 @@
+package br.facom.ufu.poo;
+
+import java.awt.Canvas;
+import java.awt.Component;
+
+public abstract class Renderizavel extends Component{
+	
+	protected Canvas canvas;
+	protected Coordenada pos;
+	public Renderizavel(Canvas canvas) {
+		this.canvas = canvas;
+		pos = new Coordenada(0, 0);
+	}
+	
+	public abstract void renderizar();
+	
+	public void setPos(Coordenada c) {
+		this.pos = c;
+		
+	}
+	
+	public Coordenada getPos() {
+		return pos;
+	}
+	
+}

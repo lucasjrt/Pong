@@ -1,0 +1,19 @@
+package br.facom.ufu.poo.logica;
+
+import java.awt.Graphics;
+
+public class Pontuacao {
+
+	private String texto = "Pontuação";
+	private int idJogador;
+	private int x, y;
+	
+	public Pontuacao(int x, int y, int idJogador) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void draw(Graphics g) {
+		g.drawString(texto, x, y);
+	}
+}

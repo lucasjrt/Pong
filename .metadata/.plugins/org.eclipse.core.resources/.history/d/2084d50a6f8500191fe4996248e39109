@@ -1,0 +1,48 @@
+package br.facom.ufu.poo.objetos;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public class FBloco {
+	private Rectangle bloco;		// O que vai ser renderizado
+	private final int idJogador;	// ID do jogador, caso exista mais de um
+	private int x, y;				// Centro do bloco
+	
+	protected FBloco(Rectangle bloco, int x, int y, int idJogador) {
+		this.idJogador = idJogador;
+		this.x = x;
+		this.y = y;
+		this.bloco = bloco;
+		this.bloco.x = x - (bloco.x + ((bloco.width - bloco.x) >> 1));
+		this.bloco.y = y - (bloco.y + ((bloco.height - bloco.y) >> 1));
+	}
+	
+	public void desenhar(Graphics g) {
+		Color temp = g.getColor();
+		g.fillRect(bloco.x, bloco.y, bloco.width, bloco.height);
+		g.setColor(Color.blue);
+		g.fillRect(x, y, 2, 2);
+		g.setColor(temp);
+	}
+	
+	public void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.bloco.x = x - (bloco.x + ((bloco.width - bloco.x) >> 1));
+		this.bloco.y = y - (bloco.y + ((bloco.height - bloco.y) >> 1));		
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public int getPlayerId() {
+		return idJogador;
+	}
+	
+}

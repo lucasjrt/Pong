@@ -1,0 +1,7 @@
+package br.facom.ufu.poo.utilidades;
+
+import java.awt.Rectangle;
+
+public class Constantes {
+	
+}
