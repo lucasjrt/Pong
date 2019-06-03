@@ -1,7 +1,0 @@
-package br.facom.ufu.poo.objetos;
-
-public interface keyboardListener {
-	
-	public void buttonPressed();
-	
-}

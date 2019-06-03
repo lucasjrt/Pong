@@ -1,8 +1,0 @@
-package br.facom.ufu.poo.utilidades;
-
-import java.awt.Rectangle;
-
-public class Constantes {
-	public static final int LARGURA_TELA = 800;
-	public static final int ALTURA_TELA = 600;
-}

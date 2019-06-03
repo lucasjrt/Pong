@@ -1,6 +1,0 @@
-package br.facom.ufu.poo.logica;
-
-public class Jogador {
-	private int idJogador;
-	private String nomeJogador;		//Pode ser null
-}

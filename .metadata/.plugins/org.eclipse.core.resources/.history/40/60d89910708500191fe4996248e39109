@@ -1,9 +1,0 @@
-package br.facom.ufu.poo.logica;
-
-import br.facom.ufu.poo.objetos.FBola;
-import br.facom.ufu.poo.objetos.FJogador;
-
-public class Mediador {
-	private FJogador[] jogadores;
-	private FBola bola;
-}

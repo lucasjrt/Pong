@@ -1,6 +1,0 @@
-INDEX VERSION 1.131+/home/lucasjrt/Documents/UFU/2019-1/POO2/Trabalho Framework/.metadata/.plugins/org.eclipse.jdt.core
-189398395.index
-4010541665.index
-2456407983.index
-1198509723.index
-631078565.index

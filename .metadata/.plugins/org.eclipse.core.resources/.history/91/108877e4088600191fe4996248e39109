@@ -1,6 +1,0 @@
-package br.facom.ufu.poo.logica;
-
-public class Mediador {
-//	private FJogador[] jogadores;
-//	private FBola bola;
-}

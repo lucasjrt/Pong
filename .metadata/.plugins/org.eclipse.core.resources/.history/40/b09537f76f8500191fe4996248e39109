@@ -1,7 +1,0 @@
-package br.facom.ufu.poo.logica;
-
-import java.util.ArrayList;
-
-public class Mediador {
-	private ArrayList<Jogador> jogadores;
-}
