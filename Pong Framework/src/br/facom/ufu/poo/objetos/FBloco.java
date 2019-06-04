@@ -5,12 +5,13 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class FBloco {
-	private Rectangle bloco;		// O que vai ser renderizado
-	private int x, y;				// Centro do bloco
+	private Rectangle bloco;			// O que vai ser renderizado
+	protected int x, y;				// Centro do bloco
+	public boolean colide;
 	
-	//private Mediador med;
+	protected FMediador med;
 	
-	protected FBloco(Rectangle bloco, int x, int y, Mediador med) {
+	public FBloco(Rectangle bloco, int x, int y, FMediador med) {
 		this.x = x;
 		this.y = y;
 		this.bloco = bloco;
@@ -29,15 +30,15 @@ public class FBloco {
 	public void setPosicao(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.bloco.x = x - (bloco.x + ((bloco.width - bloco.x) >> 1));
-		this.bloco.y = y - (bloco.y + ((bloco.height - bloco.y) >> 1));		
+		this.bloco.x = x - (bloco.width >> 1);
+		this.bloco.y = y - (bloco.height>> 1);		
 	}
 	
-	public int getX() {
-		return x;
+	public int getLargura() {
+		return (int) bloco.getWidth();
 	}
 	
-	public int getY() {
-		return y;
+	public int getAltura() {
+		return (int) bloco.getHeight();
 	}
 }

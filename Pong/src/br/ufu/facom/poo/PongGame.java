@@ -9,18 +9,37 @@ import br.facom.ufu.poo.FPong;
 public class PongGame extends FPong implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
-	private final int FPS = 40;
-	
+	private final int UPDATE_RATE = 50;
+
+	// Remover
 	private final int ESPACAMENTO_TRACEJADO = 25;
 	
 	private Thread thread;
 	private Image img;
 	private Graphics g;
-
+	
+	
+	// Objetos do jogo
+	private Mediador med;
+	public Jogador[] jogadores;
+	private Bola bola;
+	
+	//Configuracoes do jogo
+	public int tamanhoBloco;
 	
 	public void inicializar() {
 		img = createImage(LARGURA_TELA, ALTURA_TELA);
 		g = img.getGraphics();
+		// Set dificuldade:
+		tamanhoBloco = BLOCO_MEDIO.height;
+		jogadores = new Jogador[2];
+		jogadores[0] = new Jogador(this, 0, BLOCO_MEDIO, med);
+		jogadores[1] = new Jogador(this, 1, BLOCO_MEDIO, med);
+		bola = new Bola(this);
+		med = new Mediador(this, jogadores, bola);
+		bola.setMediador(med);
+		bola.setVelocidade(bola.VELOCIDADE_ALTA);
+		bola.comecarMover();
 	}
 
 	public void iniciar() {
@@ -45,12 +64,23 @@ public class PongGame extends FPong implements Runnable{
 		try {
 			while (true) {
 				desenhaCampo(g);
+				desenhaJogadores(jogadores, g);
+				bola.desenhar(g);
+				bola.mover();
+				jogadores[0].desenharPontuacao(g);
+				jogadores[1].desenharPontuacao(g);
 				repaint();
-				Thread.sleep((int) (1000 / FPS));
+				Thread.sleep((int) (1000 / UPDATE_RATE));
 				// bloco.move(bloco.getX() + 1, bloco.getY() + 1);
 			}
 		} catch (InterruptedException ie) {
 			System.err.print("Interrompido!\n" + ie);
+		}
+	}
+	
+	private void desenhaJogadores(Jogador[] jogadores, Graphics g) {
+		for(Jogador j: jogadores) {
+			j.desenhar(g);
 		}
 	}
 	

@@ -6,44 +6,45 @@ import java.awt.Rectangle;
 
 public abstract class FBola {
 	public final int VELOCIDADE_CRESCENTE = 0;
-	public final int VELOCIDADE_BAIXA = 1;
-	public final int VELOCIDADE_MEDIA = 2;
-	public final int VELOCIDADE_ALTA = 3;
+	public final int VELOCIDADE_BAIXA = 5;
+	public final int VELOCIDADE_MEDIA = 15;
+	public final int VELOCIDADE_ALTA = 25;
 	
-	private final int TAMANHO_BOLA = 10;
+	public final int TAMANHO_BOLA = 20;
 	
-	private Rectangle bordas;			// O circulo e renderizado como uma elipse, portanto precisa de um retangulo
-//	private int velocidade = 0;		// O quanto a bola anda a cada quadro
-	private int x, y;
-//	private int ax = 0, ay = 0;		// Vetor de direcao
-//	private Mediador med;
+	protected Rectangle bloco;			// Area de renderizaca da bola
+	private  int x, y;
+	protected int velocidade;
 	
-	public FBola(Mediador med) {
-//		this.med = med;
-		bordas = new Rectangle(TAMANHO_BOLA, TAMANHO_BOLA);
-		bordas.x = x - (TAMANHO_BOLA >> 1);
-		bordas.y = y - (TAMANHO_BOLA >> 1);
+	public FBola() {
+		bloco = new Rectangle(TAMANHO_BOLA, TAMANHO_BOLA);
+		bloco.x = x - (TAMANHO_BOLA >> 1);
+		bloco.y = y - (TAMANHO_BOLA >> 1);
 	}
 	
 	public void setPosicao(int x, int y) {
 		this.x = x;
 		this.y = y;
-		bordas.x = x - (TAMANHO_BOLA >> 1);
-		bordas.y = y - (TAMANHO_BOLA >> 1);
-	}
-	
-	public void setVelocidade(int velocidade) {
-//		this.velocidade = velocidade;
+		bloco.x = x - (TAMANHO_BOLA >> 1);
+		bloco.y = y - (TAMANHO_BOLA >> 1);
 	}
 	
 	public void desenhar(Graphics g) {
 		Color temp = g.getColor();
 		g.setColor(Color.white);
-		g.fillRect(bordas.x, bordas.y, bordas.width, bordas.height);
+		g.fillRect(bloco.x, bloco.y, bloco.width, bloco.height);
 		g.setColor(temp);
 	}
 	
-	public void moverBola() {
-		
+	public void setVelocidade(int velocidade) {
+		this.velocidade = velocidade;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 }

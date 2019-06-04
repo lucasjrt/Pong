@@ -9,19 +9,18 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class FPong extends JPanel {
+public abstract class FPong extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	// Constantes
-	
-	public static final Rectangle BLOCO_PEQUENO = new Rectangle(10, 30);
-	public static final Rectangle BLOCO_MEDIO = new Rectangle(10, 50);
-	public static final Rectangle BLOCO_GRANDE = new Rectangle(10, 70);
+	public static final Rectangle BLOCO_PEQUENO = new Rectangle(20, 50);
+	public static final Rectangle BLOCO_MEDIO = new Rectangle(20, 100);
+	public static final Rectangle BLOCO_GRANDE = new Rectangle(20, 150);
 
 	public final int LARGURA_TELA;
 	public final int ALTURA_TELA;
 	
-	JFrame frame;
+	private JFrame frame;
 	
 	public FPong() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
