@@ -1,4 +1,4 @@
-package br.ufu.facom.poo;
+package br.ufu.facom.poo.pong;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

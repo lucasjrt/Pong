@@ -1,4 +1,4 @@
-package br.ufu.facom.poo;
+package br.ufu.facom.poo.pong;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,7 +9,7 @@ import br.facom.ufu.poo.FPong;
 public class PongGame extends FPong implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
-	private final int UPDATE_RATE = 50;
+	private final int UPDATE_RATE = 60;
 
 	// Remover
 	private final int ESPACAMENTO_TRACEJADO = 25;
@@ -30,7 +30,6 @@ public class PongGame extends FPong implements Runnable{
 	public void inicializar() {
 		img = createImage(LARGURA_TELA, ALTURA_TELA);
 		g = img.getGraphics();
-		// Set dificuldade:
 		tamanhoBloco = BLOCO_MEDIO.height;
 		jogadores = new Jogador[2];
 		jogadores[0] = new Jogador(this, 0, BLOCO_MEDIO, med);
@@ -69,9 +68,10 @@ public class PongGame extends FPong implements Runnable{
 				bola.mover();
 				jogadores[0].desenharPontuacao(g);
 				jogadores[1].desenharPontuacao(g);
+				jogadores[0].atualizar();
+				jogadores[1].atualizar();
 				repaint();
 				Thread.sleep((int) (1000 / UPDATE_RATE));
-				// bloco.move(bloco.getX() + 1, bloco.getY() + 1);
 			}
 		} catch (InterruptedException ie) {
 			System.err.print("Interrompido!\n" + ie);
@@ -97,3 +97,4 @@ public class PongGame extends FPong implements Runnable{
 		}
 	}
 }
+

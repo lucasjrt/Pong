@@ -56,7 +56,7 @@ public class FDisplay {
 		g.setColor(Color.white);
 		for(int i = 0; i < segmentos.length; i++)
 			if(segmentos[i] != null) 
-				g.fillRect(segmentos[i].x + x, segmentos[i].y + y, segmentos[i].width, segmentos[i].height);
+				g.drawRect(segmentos[i].x + x, segmentos[i].y + y, segmentos[i].width, segmentos[i].height);
 		
 		g.setColor(temp);
 		

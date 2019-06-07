@@ -1,4 +1,4 @@
-package br.ufu.facom.poo;
+package br.ufu.facom.poo.pong;
 
 import br.facom.ufu.poo.objetos.FJogador;
 import br.facom.ufu.poo.objetos.FPontuacao;

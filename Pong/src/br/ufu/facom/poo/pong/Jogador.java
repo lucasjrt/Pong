@@ -1,4 +1,4 @@
-package br.ufu.facom.poo;
+package br.ufu.facom.poo.pong;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -8,11 +8,14 @@ import java.awt.event.KeyListener;
 import br.facom.ufu.poo.objetos.FJogador;
 
 public class Jogador extends FJogador{
-	private int velocidadeMovimento = 40;
+	private int velocidadeMovimento = 15;
 	private PongGame jogo;
 	
 	private final int CIMA = 0;
 	private final int BAIXO = 1;
+	
+	public int movendoP1 = -1;
+	public int movendoP2 = -1;
 	
 	private Pontuacao pontuacao;
 	
@@ -25,28 +28,31 @@ public class Jogador extends FJogador{
 	}
 	
 	private void adicionarControles() {
+
 		if(idJogador == 0) {
 			jogo.addKeyListener(new KeyListener() {
 				public void keyTyped(KeyEvent e) {}
-				public void keyReleased(KeyEvent e) {}
+				public void keyReleased(KeyEvent e) {
+					movendoP1 = -1;
+				}
 				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode() == KeyEvent.VK_W) {
-						mover(CIMA);
-					} else if(e.getKeyCode() == KeyEvent.VK_S) {
-						mover(BAIXO);
-					}
+					if(e.getKeyCode() == KeyEvent.VK_W)
+						movendoP1 = CIMA;
+					else if(e.getKeyCode() == KeyEvent.VK_S)
+						movendoP1 = BAIXO;
 				}
 			});
 		} else if (idJogador == 1) {
 			jogo.addKeyListener(new KeyListener() {
 				public void keyTyped(KeyEvent e) {}
-				public void keyReleased(KeyEvent e) {}
+				public void keyReleased(KeyEvent e) {
+					movendoP2 = -1;
+				}
 				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode() == KeyEvent.VK_UP) {
-						mover(CIMA);
-					} else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-						mover(BAIXO);
-					}
+					if(e.getKeyCode() == KeyEvent.VK_UP)
+						movendoP2 = CIMA;
+					else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+						movendoP2 = BAIXO;
 				}
 			});
 		}
@@ -75,6 +81,20 @@ public class Jogador extends FJogador{
 	
 	public void desenharPontuacao(Graphics g) {
 		pontuacao.desenhar(g);
+	}
+	
+	public void atualizar() {
+		if(idJogador == 0) {
+			if(movendoP1 == CIMA)
+				mover(CIMA);
+			else if(movendoP1 == BAIXO)
+				mover(BAIXO);
+		} else {
+			if(movendoP2 == CIMA)
+				mover(CIMA);
+			else if(movendoP2 == BAIXO)
+				mover(BAIXO);
+		}
 	}
 	
 	public void setPontuacao(int pontos) {
