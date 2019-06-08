@@ -1,32 +1,25 @@
-package br.facom.ufu.poo.objetos;
+package br.ufu.facom.framework.objetos;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public abstract class FBola {
-	public final int VELOCIDADE_CRESCENTE = 0;
-	public final int VELOCIDADE_BAIXA = 5;
-	public final int VELOCIDADE_MEDIA = 15;
-	public final int VELOCIDADE_ALTA = 25;
-	
-	public final int TAMANHO_BOLA = 20;
-	
 	protected Rectangle bloco;			// Area de renderizaca da bola
-	private  int x, y;
+	protected  int x, y;
 	protected int velocidade;
 	
 	public FBola() {
-		bloco = new Rectangle(TAMANHO_BOLA, TAMANHO_BOLA);
-		bloco.x = x - (TAMANHO_BOLA >> 1);
-		bloco.y = y - (TAMANHO_BOLA >> 1);
+		bloco = new Rectangle(FConstantes.TAMANHO_BOLA, FConstantes.TAMANHO_BOLA);
+		bloco.x = x - (FConstantes.TAMANHO_BOLA >> 1);
+		bloco.y = y - (FConstantes.TAMANHO_BOLA >> 1);
 	}
 	
 	public void setPosicao(int x, int y) {
 		this.x = x;
 		this.y = y;
-		bloco.x = x - (TAMANHO_BOLA >> 1);
-		bloco.y = y - (TAMANHO_BOLA >> 1);
+		bloco.x = x - (FConstantes.TAMANHO_BOLA >> 1);
+		bloco.y = y - (FConstantes.TAMANHO_BOLA >> 1);
 	}
 	
 	public void desenhar(Graphics g) {
@@ -46,5 +39,21 @@ public abstract class FBola {
 	
 	public int getY() {
 		return y;
+	}
+	
+	public int getTopo() {
+		return bloco.y;
+	}
+	
+	public int getInferior() {
+		return bloco.y + bloco.height;
+	}
+	
+	public int getEsquerda() {
+		return bloco.x;
+	}
+	
+	public int getDireita() {
+		return bloco.x + bloco.width;
 	}
 }

@@ -1,8 +1,7 @@
-package br.facom.ufu.poo;
+package br.ufu.facom.framework;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -11,16 +10,11 @@ import javax.swing.JPanel;
 
 public abstract class FPong extends JPanel {
 	private static final long serialVersionUID = 1L;
-
-	// Constantes
-	public static final Rectangle BLOCO_PEQUENO = new Rectangle(20, 50);
-	public static final Rectangle BLOCO_MEDIO = new Rectangle(20, 100);
-	public static final Rectangle BLOCO_GRANDE = new Rectangle(20, 150);
-
-	public final int LARGURA_TELA;
-	public final int ALTURA_TELA;
 	
 	private JFrame frame;
+	
+	public final int LARGURA_TELA;
+	public final int ALTURA_TELA;
 	
 	public FPong() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];

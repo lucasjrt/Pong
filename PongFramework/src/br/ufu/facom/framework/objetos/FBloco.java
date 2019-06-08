@@ -1,4 +1,4 @@
-package br.facom.ufu.poo.objetos;
+package br.ufu.facom.framework.objetos;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -40,5 +40,21 @@ public class FBloco {
 	
 	public int getAltura() {
 		return (int) bloco.getHeight();
+	}
+	
+	public int getTopo() {
+		return bloco.y;
+	}
+	
+	public int getInferior() {
+		return  bloco.y + bloco.height;
+	}
+	
+	public int getEsquerda() {
+		return bloco.x;
+	}
+	
+	public int getDireita() {
+		return bloco.x + bloco.width;
 	}
 }

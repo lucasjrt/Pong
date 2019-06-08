@@ -1,15 +1,14 @@
-package br.facom.ufu.poo.objetos;
+package br.ufu.facom.framework.objetos;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import br.facom.ufu.poo.FPong;
+import br.ufu.facom.framework.FPong;
 
 public abstract class FPontuacao {
 	private int idJogador;
 	private int pontos;
 
-	private final int ESPACAMENTO_NUMERO = 20;
 	private int x, y; // Canto superior esquerdo do numero mais a direita
 
 	private ArrayList<FDisplay> numeros;
@@ -21,7 +20,7 @@ public abstract class FPontuacao {
 		this.numeros = new ArrayList<FDisplay>();
 		numeros.add(new FDisplay(pontos, x, y));
 		if(idJogador == 1) {
-			this.x -= numeros.get(0).LARGURA_NUMERO;
+			this.x -= FConstantes.DISPLAY_LARGURA_NUMERO;
 			numeros.get(0).setPosicao(x, y);
 		}
 	}
@@ -47,7 +46,7 @@ public abstract class FPontuacao {
 	public void setPontos(int pontos) {
 		if (idJogador == 1)
 			this.x += (contaDigitos(pontos) - contaDigitos(this.pontos))
-					* (numeros.get(0).LARGURA_NUMERO + ESPACAMENTO_NUMERO);
+					* (FConstantes.DISPLAY_LARGURA_NUMERO + FConstantes.ESPACAMENTO_NUMERO);
 		this.pontos = pontos;
 		atualizaNumeros();
 	}
@@ -66,7 +65,7 @@ public abstract class FPontuacao {
 		for (int i = 0; i < n; i++) {
 			numeros.get(i).setValor(temp % 10);
 			temp /= 10;
-			numeros.get(i).setPosicao(x - (numeros.get(i).LARGURA_NUMERO + ESPACAMENTO_NUMERO) * i, y);
+			numeros.get(i).setPosicao(x - (FConstantes.DISPLAY_LARGURA_NUMERO + FConstantes.ESPACAMENTO_NUMERO) * i, y);
 		}
 	}
 }

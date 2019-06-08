@@ -1,7 +1,7 @@
-package br.ufu.facom.poo.pong;
+package br.ufu.facom.pong;
 
-import br.facom.ufu.poo.objetos.FJogador;
-import br.facom.ufu.poo.objetos.FPontuacao;
+import br.ufu.facom.framework.objetos.FJogador;
+import br.ufu.facom.framework.objetos.FPontuacao;
 
 public class Pontuacao extends FPontuacao{
 	public Pontuacao(PongGame jogo, FJogador jogador) {
