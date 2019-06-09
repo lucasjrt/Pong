@@ -1,4 +1,4 @@
-package br.ufu.facom.pong;
+package br.ufu.facom.pong.tenis;
 
 import br.ufu.facom.framework.objetos.FConstantes;
 import br.ufu.facom.framework.objetos.FMediador;
@@ -6,9 +6,10 @@ import br.ufu.facom.framework.objetos.FMediador;
 public class Mediador extends FMediador {
 	private Jogador[] jogadores;
 	private Bola bola;
-	private PongGame jogo;
+	private Tenis jogo;
 
-	public Mediador(PongGame jogo, Jogador[] jogadores, Bola bola) {
+	public Mediador(Tenis jogo, Jogador[] jogadores, Bola bola) {
+		super(jogadores);
 		this.jogo = jogo;
 		this.jogadores = jogadores;
 		this.bola = bola;
@@ -45,29 +46,23 @@ public class Mediador extends FMediador {
 		boolean colide = false;
 		if (colide(bola, jogadores[0]) != null) {
 			colide = true;
-			bola.vx = -bola.vx;
-			aumVy = (Constantes.VELOCIDADE_MAX_VERT_BOLA * (bola.getY() - jogadores[0].getY())) / jogo.tamanhoBloco.height;  
+			bola.setVx(-bola.getVx());
+			aumVy = (jogo.VELOCIDADE_JOGO * (bola.getY() - jogadores[0].getY()))
+					/ jogo.tamanhoBloco.height;
 		} else if (colide(bola, jogadores[1]) != null) {
 			colide = true;
-			bola.vx = -bola.vx;
-			aumVy = (Constantes.VELOCIDADE_MAX_VERT_BOLA * (bola.getY() - jogadores[1].getY())) / jogo.tamanhoBloco.height;
+			bola.setVx(-bola.getVx());
+			aumVy = (jogo.VELOCIDADE_JOGO * (bola.getY() - jogadores[1].getY()))
+					/ jogo.tamanhoBloco.height;
 		}
 		if (colide) {
-			if (bola.vy + aumVy <= Constantes.VELOCIDADE_MAX_VERT_BOLA
-					&& bola.vy + aumVy >= -Constantes.VELOCIDADE_MAX_VERT_BOLA)
-				bola.vy += aumVy;
-			else if (bola.vy + aumVy <= Constantes.VELOCIDADE_MAX_VERT_BOLA)
-				bola.vy = -Constantes.VELOCIDADE_MAX_VERT_BOLA;
-			else if (bola.vy + aumVy >= -Constantes.VELOCIDADE_MAX_VERT_BOLA)
-				bola.vy = Constantes.VELOCIDADE_MAX_VERT_BOLA;
+			if (bola.getVy() + aumVy <= jogo.VELOCIDADE_JOGO
+					&& bola.getVy() + aumVy >= -jogo.VELOCIDADE_JOGO)
+				bola.setVy(bola.getVy() + aumVy);
+			else if (bola.getVy() + aumVy <= jogo.VELOCIDADE_JOGO)
+				bola.setVy(-jogo.VELOCIDADE_JOGO);
+			else if (bola.getVy() + aumVy >= -jogo.VELOCIDADE_JOGO)
+				bola.setVy(jogo.VELOCIDADE_JOGO);
 		}
-	}
-
-	public int getX(int idJogador) {
-		return jogadores[idJogador].getX();
-	}
-
-	public int getY(int idJogador) {
-		return jogadores[idJogador].getY();
 	}
 }

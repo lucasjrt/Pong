@@ -13,8 +13,8 @@ public abstract class FPontuacao {
 
 	private ArrayList<FDisplay> numeros;
 
-	public FPontuacao(FPong jogo, FJogador jogador) {
-		this.idJogador = jogador.idJogador;
+	public FPontuacao(FPong jogo, int idJogador) {
+		this.idJogador = idJogador;
 		this.x = (jogo.LARGURA_TELA >> 1) + (idJogador == 0 ? -(jogo.LARGURA_TELA >> 3) : jogo.LARGURA_TELA >> 3);
 		this.y = jogo.ALTURA_TELA >> 3;
 		this.numeros = new ArrayList<FDisplay>();

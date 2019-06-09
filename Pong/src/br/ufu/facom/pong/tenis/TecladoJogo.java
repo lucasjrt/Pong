@@ -1,12 +1,12 @@
-package br.ufu.facom.pong;
+package br.ufu.facom.pong.tenis;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Teclado implements KeyListener{
+public class TecladoJogo implements KeyListener{
 	private Jogador[] jogadores;
 	
-	public Teclado (Jogador[] jogadores) {
+	public TecladoJogo (Jogador[] jogadores) {
 		this.jogadores = jogadores;
 	}
 	
@@ -28,6 +28,5 @@ public class Teclado implements KeyListener{
 			jogadores[1].movendo = -1;
 	}
 
-	public void keyTyped(KeyEvent e) {
-	}
+	public void keyTyped(KeyEvent e) {}
 }

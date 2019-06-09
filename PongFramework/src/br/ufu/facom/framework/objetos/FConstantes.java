@@ -21,5 +21,5 @@ public class FConstantes {
 	//Constantes bloco
 	public static final Rectangle TAMANHO_BLOCO_PEQUENO = new Rectangle(20, 50);
 	public static final Rectangle TAMANHO_BLOCO_MEDIO = new Rectangle(20, 100);
-	public static final Rectangle TAMANHO_BLOCO_GRANDE = new Rectangle(20, 150);	
+	public static final Rectangle TAMANHO_BLOCO_GRANDE = new Rectangle(20, 150);
 }

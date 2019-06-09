@@ -7,6 +7,10 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import br.ufu.facom.framework.FPong;
+import br.ufu.facom.framework.objetos.FConstantes;
+import br.ufu.facom.pong.paredao.Paredao;
+
 public class Menu extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private final int LARGURA_TELA;
@@ -35,7 +39,7 @@ public class Menu extends JPanel{
 	}
 	
 	public static void main(String[] args) {
-		PongGame p = new PongGame();
+		FPong p = new Paredao(FConstantes.BOLA_VELOCIDADE_ALTA, FConstantes.TAMANHO_BLOCO_MEDIO);
 		p.inicializar();
 		p.iniciar();
 		//Menu m = new Menu();

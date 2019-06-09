@@ -2,6 +2,7 @@ package br.ufu.facom.framework;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,13 +17,23 @@ public abstract class FPong extends JPanel {
 	public final int LARGURA_TELA;
 	public final int ALTURA_TELA;
 	
-	public FPong() {
+	public final int VELOCIDADE_JOGO;
+	
+	public final int TOPO_CAMPO;
+	public final int INFERIOR_CAMPO;
+	
+	public Rectangle tamanhoBloco;
+	
+	public FPong(int velocidadeJogo) {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 		inicializarFrame();
 		device.setFullScreenWindow(frame);
 		LARGURA_TELA = frame.getWidth();
 		ALTURA_TELA = frame.getHeight();
 		setSize(LARGURA_TELA, ALTURA_TELA);
+		VELOCIDADE_JOGO = velocidadeJogo;
+		TOPO_CAMPO = ALTURA_TELA >> 5;
+		INFERIOR_CAMPO = ALTURA_TELA - TOPO_CAMPO;
 		requestFocus();
 		addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
@@ -46,4 +57,7 @@ public abstract class FPong extends JPanel {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
+	public abstract void iniciar();
+	public abstract void inicializar();
 }
