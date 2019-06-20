@@ -71,6 +71,10 @@ public class Menu extends JPanel{
 	
 	private void desenhaTitulo(Graphics g,Font f, FontRenderContext frc) {
 		Rectangle2D r = f.getStringBounds("Pong", frc);
+		int xString = (int) ((getWidth() - r.getWidth()) / 2.0 );
+		int yString = (int) ((getHeight() + r.getHeight()) / 2.0);
+		g.setFont(f);
+		g.drawString("Pong", xString, yString);
 	}
 	
 	public void paint(Graphics g) {
