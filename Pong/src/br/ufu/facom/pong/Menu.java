@@ -1,6 +1,7 @@
 package br.ufu.facom.pong;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -60,7 +61,13 @@ public class Menu extends JPanel{
 	}
 	
 	private void desenhaMenu(Graphics g) {
+		Font f = new Font("monospace", Font.PLAIN, 128);
 		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
+		desenhaTitulo();
+	}
+	
+	private void desenhaTitulo() {
+		
 	}
 	
 	public void paint(Graphics g) {
