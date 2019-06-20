@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -69,7 +70,7 @@ public class Menu extends JPanel{
 	}
 	
 	private void desenhaTitulo(Graphics g,Font f, FontRenderContext frc) {
-		
+		Rectangle2D r = f.getStringBounds("Pong", frc);
 	}
 	
 	public void paint(Graphics g) {
