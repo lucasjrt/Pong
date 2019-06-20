@@ -8,6 +8,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.font.FontRenderContext;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -62,11 +63,12 @@ public class Menu extends JPanel{
 	
 	private void desenhaMenu(Graphics g) {
 		Font f = new Font("monospace", Font.PLAIN, 128);
+		FontRenderContext frc = new FontRenderContext(null,true, true);
 		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
-		desenhaTitulo();
+		desenhaTitulo(g, f, frc);
 	}
 	
-	private void desenhaTitulo() {
+	private void desenhaTitulo(Graphics g,Font f, FontRenderContext frc) {
 		
 	}
 	
