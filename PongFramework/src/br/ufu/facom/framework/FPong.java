@@ -30,10 +30,10 @@ public abstract class FPong extends JPanel {
 		device.setFullScreenWindow(frame);
 		LARGURA_TELA = frame.getWidth();
 		ALTURA_TELA = frame.getHeight();
-		setSize(LARGURA_TELA, ALTURA_TELA);
 		VELOCIDADE_JOGO = velocidadeJogo;
 		TOPO_CAMPO = ALTURA_TELA >> 5;
 		INFERIOR_CAMPO = ALTURA_TELA - TOPO_CAMPO;
+		setSize(LARGURA_TELA, ALTURA_TELA);
 		requestFocus();
 		addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}

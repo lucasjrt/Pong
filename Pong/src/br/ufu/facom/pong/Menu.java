@@ -1,15 +1,15 @@
 package br.ufu.facom.pong;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import br.ufu.facom.framework.FPong;
-import br.ufu.facom.framework.objetos.FConstantes;
-import br.ufu.facom.pong.paredao.Paredao;
 
 public class Menu extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -19,31 +19,64 @@ public class Menu extends JPanel{
 	private JFrame frame;
 	
 	private Image img;
+	private Graphics g;
 	
 	public Menu() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-		frame = new JFrame("Pong");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.requestFocus();
+		inicializarFrame();
+		device.setFullScreenWindow(frame);
 		LARGURA_TELA = frame.getWidth();
 		ALTURA_TELA = frame.getHeight();
-		device.setFullScreenWindow(frame);
+		inicializar();
+		requestFocus();
+		addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+					System.exit(0);
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
+		desenhaMenu(g);
 	}
 	
 	private void inicializar() {
-		img = createImage(LARGURA_TELA, ALTURA_TELA);		
+		frame = new JFrame("Pong");
+		System.out.println(LARGURA_TELA + ", " + ALTURA_TELA);
+		img = createImage(LARGURA_TELA, ALTURA_TELA);
+		g = img.getGraphics();
 	}
 	
-	private void iniciar() {
+	private void inicializarFrame() {
+		frame = new JFrame("Test");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.add(this);
+		frame.setUndecorated(true);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(LARGURA_TELA, ALTURA_TELA);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	private void desenhaMenu(Graphics g) {
+		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
+	}
+	
+	public void paint(Graphics g) {
+		g.setColor(Color.black);
+		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
+		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, this);
+	}
 		
+	public void update(Graphics g) {
+		paint(g);		
 	}
-	
+		
 	public static void main(String[] args) {
-		FPong p = new Paredao(FConstantes.BOLA_VELOCIDADE_ALTA, FConstantes.TAMANHO_BLOCO_MEDIO);
-		p.inicializar();
-		p.iniciar();
-		//Menu m = new Menu();
-//		m.inicializar();
-//		m.iniciar();
+//		FPong p = new Paredao(FConstantes.BOLA_VELOCIDADE_ALTA, FConstantes.TAMANHO_BLOCO_MEDIO);
+//		p.inicializar();
+//		p.iniciar();
+		new Menu();
 	}
 }
