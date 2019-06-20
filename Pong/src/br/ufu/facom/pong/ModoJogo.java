@@ -1,6 +1,6 @@
 package br.ufu.facom.pong;
 
 public enum ModoJogo {
-	TREINO, JOGO;
+	TREINO, JOGO, MULTIPLAYER;
 
 }

@@ -24,7 +24,8 @@ public class TecladoMenu implements KeyListener{
 				menu.atual = (menu.atual + 3) % 4;
 			else
 				menu.atual = (menu.atual + 1) % 4;
-		}
+		} else if(e.getKeyCode() == KeyEvent.VK_ENTER)
+			menu.iniciarJogo();
 		menu.atualizaMenu();	
 	}
 	public void keyReleased(KeyEvent e) {

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.font.FontRenderContext;
@@ -13,6 +14,10 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import br.ufu.facom.framework.objetos.FConstantes;
+import br.ufu.facom.pong.paredao.Paredao;
+import br.ufu.facom.pong.tenis.Tenis;
 
 public class Menu extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -27,7 +32,7 @@ public class Menu extends JPanel{
 	private String[] titulos = {"Estilo de jogo", "Modo de jogo", "Velocidade", "Tamanho do bloco"}; 
 	public String[][] conteudos = 
 			{{"Tênis", "Futebol", "Paredão"},
-			{"Jogo", "Treino"},
+			{"Jogo", "Treino", "Multiplayer"},
 			{"Lento", "Médio", "Rápido", "Crescente"},
 			{"Pequeno", "Médio", "Grande"}};
 	
@@ -128,6 +133,63 @@ public class Menu extends JPanel{
 		espacamento = getWidth() - espacamento;
 		espacamento = espacamento / (i + 1);
 		return espacamento;
+	}
+	
+	public void iniciarJogo() {
+		ModoJogo modoJogo;
+		int velocidade;
+		Rectangle tamanhoBloco;
+		switch (selecionado[1]) {
+			case 1:
+				modoJogo = ModoJogo.TREINO;
+				break;
+			case 2:
+				modoJogo = ModoJogo.MULTIPLAYER;
+				break;
+			default:
+				modoJogo = ModoJogo.JOGO;
+		}
+		
+		
+		switch(selecionado[2]) {
+			case 0:
+				velocidade = FConstantes.BOLA_VELOCIDADE_BAIXA;
+				break;
+			case 2:
+				velocidade = FConstantes.BOLA_VELOCIDADE_ALTA;
+				break;
+			case 3:
+				velocidade = FConstantes.BOLA_VELOCIDADE_CRESCENTE;
+				break;
+			default:
+				velocidade = FConstantes.BOLA_VELOCIDADE_MEDIA;
+		}
+		
+		switch(selecionado[3]) {
+			case 0:
+				tamanhoBloco = FConstantes.TAMANHO_BLOCO_PEQUENO;
+				break;
+			case 2: 
+				tamanhoBloco = FConstantes.TAMANHO_BLOCO_GRANDE;
+				break;
+			default:
+				tamanhoBloco = FConstantes.TAMANHO_BLOCO_MEDIO;
+		}
+		
+		frame.dispose();
+		
+		switch(selecionado[0]) {
+			case 0:
+				new Tenis(velocidade, modoJogo, tamanhoBloco);
+				break;
+			case 1:
+				// Futebol
+				break;
+			case 2:
+				new Paredao(velocidade, tamanhoBloco);
+				// Paredao
+				break;
+		}
 	}
 	
 	public void paint(Graphics g) {

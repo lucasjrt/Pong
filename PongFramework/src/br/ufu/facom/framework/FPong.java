@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public abstract class FPong extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JFrame frame;
+	protected JFrame frame;
 	
 	public final int LARGURA_TELA;
 	public final int ALTURA_TELA;
@@ -58,6 +58,6 @@ public abstract class FPong extends JPanel {
 		frame.setVisible(true);
 	}
 	
-	public abstract void iniciar();
-	public abstract void inicializar();
+	protected abstract void iniciar();
+	protected abstract void inicializar();
 }

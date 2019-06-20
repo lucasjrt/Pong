@@ -29,9 +29,11 @@ public class Tenis extends FPong implements Runnable {
 		super(velocidadeJogo);
 		this.tamanhoBloco = tamanhoBloco;
 		this.modoJogo = modoJogo;
+		inicializar();
+		iniciar();
 	}
 
-	public void inicializar() {
+	protected void inicializar() {
 		img = createImage(LARGURA_TELA, ALTURA_TELA);
 		g = img.getGraphics();
 		jogadores = new Jogador[2];
@@ -47,7 +49,7 @@ public class Tenis extends FPong implements Runnable {
 			addKeyListener(new TecladoTreino(jogadores));
 	}
 
-	public void iniciar() {
+	protected void iniciar() {
 		thread = new Thread(this, "Tenis");
 		thread.start();
 	}
