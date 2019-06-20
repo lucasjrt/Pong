@@ -66,6 +66,7 @@ public class Menu extends JPanel{
 		Font f = new Font("monospace", Font.PLAIN, 128);
 		FontRenderContext frc = new FontRenderContext(null,true, true);
 		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
+		g.setColor(Color.white);
 		desenhaTitulo(g, f, frc);
 	}
 	
