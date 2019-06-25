@@ -15,7 +15,7 @@ public abstract class FPontuacao {
 
 	public FPontuacao(FPong jogo, int idJogador) {
 		this.idJogador = idJogador;
-		this.x = (jogo.LARGURA_TELA >> 1) + (idJogador == 0 ? -(jogo.LARGURA_TELA >> 3) : jogo.LARGURA_TELA >> 3);
+		this.x = (jogo.LARGURA_TELA >> 1) + (idJogador == 0 ? -((jogo.LARGURA_TELA>>5)+FConstantes.DISPLAY_LARGURA_NUMERO+FConstantes.ESPACAMENTO_NUMERO) : ((jogo.LARGURA_TELA>>5)+FConstantes.DISPLAY_LARGURA_NUMERO+FConstantes.ESPACAMENTO_NUMERO));
 		this.y = jogo.ALTURA_TELA >> 3;
 		this.numeros = new ArrayList<FDisplay>();
 		numeros.add(new FDisplay(pontos, x, y));
@@ -65,7 +65,7 @@ public abstract class FPontuacao {
 		for (int i = 0; i < n; i++) {
 			numeros.get(i).setValor(temp % 10);
 			temp /= 10;
-			numeros.get(i).setPosicao(x - (FConstantes.DISPLAY_LARGURA_NUMERO + FConstantes.ESPACAMENTO_NUMERO) * i, y);
+			numeros.get(i).setPosicao(x - (FConstantes.DISPLAY_LARGURA_NUMERO + FConstantes.ESPACAMENTO_NUMERO)*i, y);
 		}
 	}
 }
