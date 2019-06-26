@@ -1,4 +1,4 @@
-package br.ufu.facom.pong.paredao;
+package br.ufu.facom.pong.futebol;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 import br.ufu.facom.framework.FPong;
 import br.ufu.facom.framework.objetos.FConstantes;
 
-public class Paredao extends FPong implements Runnable {
+public class Futebol extends FPong implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	private Thread thread;
@@ -24,10 +24,12 @@ public class Paredao extends FPong implements Runnable {
 	//Objetos do jogo
 	private Jogador jogador;
 	private Bola bola;
+	private Obstaculos obstaculo1;
+	private Obstaculos obstaculo2;
 	
 	private Mediador med;
 
-	public Paredao(int velocidadeJogo, Rectangle tamanhoBloco) {
+	public Futebol(int velocidadeJogo, Rectangle tamanhoBloco) {
 		super(velocidadeJogo);
 		this.tamanhoBloco = tamanhoBloco;
 		//while(frame.getWidth() <= 5 || frame.getHeight() <= 5) {
@@ -43,6 +45,8 @@ public class Paredao extends FPong implements Runnable {
 		jogador = new Jogador(this, FConstantes.TAMANHO_BLOCO_MEDIO, med);
 		jogador.setCor(Color.green);
 		teclado = new Teclado(jogador);
+		obstaculo1 = new Obstaculos(this);
+		obstaculo2 = new Obstaculos(this);
 		bola = new Bola(this, jogador);
 		med = new Mediador(this, jogador, bola);
 		bola.setMediador(med);
@@ -63,8 +67,16 @@ public class Paredao extends FPong implements Runnable {
 			jogador.desenhar(g);
 			bola.desenhar(g);
 			bola.mover();
+			obstaculo1.desenhar(g);
+			obstaculo2.desenhar(g);
+			obstaculo1.mover();
+			obstaculo2.mover();
 			jogador.atualizar();
 			jogador.desenharPontuacao(g);
+			obstaculo1.mover();
+			obstaculo2.mover();
+			obstaculo1.mover();
+			obstaculo2.mover();
 			repaint();
 			try {
 				Thread.sleep(1000 / UPDATE_RATE);

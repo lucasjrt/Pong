@@ -30,7 +30,7 @@ public abstract class FJogador {
 		int largura = idJogador * jogo.LARGURA_TELA
 				+ (idJogador == 0 ? (tamanho.width >> 1) + 20 : -(tamanho.width >> 1) - 20);
 		int altura = (jogo.ALTURA_TELA >> 1);
-		this.bloco = new FBloco(new Rectangle(tamanho.width, tamanho.height), largura, altura, med);
+		this.bloco = new FBloco(new Rectangle(tamanho.width, tamanho.height), largura, altura);
 		velocidadeMovimento = 2 * jogo.VELOCIDADE_JOGO / 3;
 	}
 
