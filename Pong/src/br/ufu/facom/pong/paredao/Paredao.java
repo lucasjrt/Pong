@@ -2,8 +2,8 @@ package br.ufu.facom.pong.paredao;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import br.ufu.facom.framework.FPong;
 import br.ufu.facom.framework.objetos.FConstantes;
@@ -12,14 +12,10 @@ public class Paredao extends FPong implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	private Thread thread;
-	private Image img;
+	private BufferedImage img;
 	private Graphics g;
 
-	private final int UPDATE_RATE = 100;
-	
 	public final int DIREITA_CAMPO = LARGURA_TELA - TOPO_CAMPO;
-	
-	private Teclado teclado;
 	
 	//Objetos do jogo
 	private Jogador jogador;
@@ -30,24 +26,24 @@ public class Paredao extends FPong implements Runnable {
 	public Paredao(int velocidadeJogo, Rectangle tamanhoBloco) {
 		super(velocidadeJogo);
 		this.tamanhoBloco = tamanhoBloco;
-		while(frame.getWidth() <= 5 || frame.getHeight() <= 5) {
-			inicializar();
-			iniciar();
-		}
+		inicializar();
+		iniciar();
 	}
 
 	@Override
 	protected void inicializar() {
-		img = createImage(LARGURA_TELA, ALTURA_TELA);
+		if(bs == null)
+			createBufferStrategy(2);
+		bs = getBufferStrategy();
+		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_RGB);
 		g = img.getGraphics();
 		jogador = new Jogador(this, FConstantes.TAMANHO_BLOCO_MEDIO, med);
 		jogador.setCor(Color.green);
-		teclado = new Teclado(jogador);
 		bola = new Bola(this, jogador);
 		med = new Mediador(this, jogador, bola);
 		bola.setMediador(med);
 		bola.comecarMover();
-		addKeyListener(teclado);
+		addKeyListener(new Teclado(jogador));
 	}
 
 	@Override
@@ -59,27 +55,36 @@ public class Paredao extends FPong implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			desenhaCampo(g);
-			jogador.desenhar(g);
-			bola.desenhar(g);
-			bola.mover();
-			jogador.atualizar();
-			jogador.desenharPontuacao(g);
-			repaint();
-			try {
-				Thread.sleep(1000 / UPDATE_RATE);
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
+			long lastTime = System.nanoTime();
+			final double ns = 1000000000.0 / 60.0;
+			double delta = 0;
+			while (true) {
+				long now = System.nanoTime();
+				delta += (now - lastTime) / ns;
+				lastTime = now;
+				while (delta >= 1) {
+					atualizar();
+					delta--;
+				}
+				renderizar();
 			}
 		}
 	}
 	
-	public void paint(Graphics g) {
-		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, this);
+	private void atualizar() {
+		bola.mover();
+		jogador.atualizar();
 	}
-
-	public void update(Graphics g) {
-		paint(g);
+	
+	private void renderizar() {
+		g = img.getGraphics();
+		desenhaCampo(g);
+		jogador.desenhar(g);
+		bola.desenhar(g);
+		jogador.desenharPontuacao(g);
+		g = bs.getDrawGraphics();
+		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, null);
+		bs.show();
 	}
 
 	private void desenhaCampo(Graphics g) {

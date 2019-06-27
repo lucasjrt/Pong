@@ -8,5 +8,4 @@ public class Bola extends FBola {
 		setPosicao(jogo.LARGURA_TELA >> 1, jogo.ALTURA_TELA >> 1);
 		setVelocidade(jogo.VELOCIDADE_JOGO);
 	}
-	
 }

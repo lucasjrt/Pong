@@ -26,6 +26,7 @@ public class Bola extends FBola{
 		
 		if (getX() <= 0) {
 			med.pontua(jogador.getIdJogador());
+			jogador.setIdJogador((jogador.getIdJogador() + 1) % 2);
 			setPosicao(jogador.getX(), jogador.getY() + jogo.VELOCIDADE_JOGO);
 			vx = velocidade;
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 2));
