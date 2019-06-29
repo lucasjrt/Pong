@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import br.ufu.facom.framework.objetos.FConstantes;
+import br.ufu.facom.pong.futebol.Futebol;
 import br.ufu.facom.pong.paredao.Paredao;
 import br.ufu.facom.pong.tenis.Tenis;
 
@@ -31,10 +32,10 @@ public class Menu extends JPanel{
 	
 	private String[] titulos = {"Estilo de jogo", "Modo de jogo", "Velocidade", "Tamanho do bloco"}; 
 	public String[][] conteudos = 
-			{{"Tênis", "Futebol", "Paredão"},
+			{{"Tenis", "Futebol", "Paredao"},
 			{"Jogo", "Treino", "Multiplayer"},
-			{"Lento", "Médio", "Rápido", "Crescente"},
-			{"Pequeno", "Médio", "Grande"}};
+			{"Lento", "Medio", "Rapido", "Crescente"},
+			{"Pequeno", "Medio", "Grande"}};
 	
 	public int[] selecionado = {0, 0, 1, 1}; // Posição do vetor de cada opção que está selecionada
 	public int atual = 0; // Opção do menu selecionada para ser modificada
@@ -184,8 +185,9 @@ public class Menu extends JPanel{
 				break;
 			case 1:
 				// Futebol
+				new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
 				break;
-			case 2:
+			case 2:		
 				new Paredao(velocidade, tamanhoBloco);
 				// Paredao
 				break;
@@ -206,6 +208,9 @@ public class Menu extends JPanel{
 //		FPong p = new Paredao(FConstantes.BOLA_VELOCIDADE_ALTA, FConstantes.TAMANHO_BLOCO_MEDIO);
 //		p.inicializar();
 //		p.iniciar();
-		new Menu();
+		//new Menu();
+		//ModoJogo modo = new ModoJogo();
+		new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
+		System.out.printf("Tamanho bola %d\n",FConstantes.TAMANHO_BOLA);
 	}
 }

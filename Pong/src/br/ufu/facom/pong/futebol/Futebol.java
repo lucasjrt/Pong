@@ -6,86 +6,60 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import br.ufu.facom.framework.FPong;
-import br.ufu.facom.framework.objetos.FConstantes;
+import br.ufu.facom.pong.ModoJogo;
 
 public class Futebol extends FPong implements Runnable {
+
 	private static final long serialVersionUID = 1L;
+
+	private final int UPDATE_RATE = 100;
 
 	private Thread thread;
 	private Image img;
 	private Graphics g;
 
-	private final int UPDATE_RATE = 100;
-	
-	public final int DIREITA_CAMPO = LARGURA_TELA - TOPO_CAMPO;
-	
-	private Teclado teclado;
-	
-	//Objetos do jogo
-	private Jogador jogador;
-	private Bola bola;
-	private Obstaculos obstaculo1;
-	private Obstaculos obstaculo2;
-	
+	// Objetos do jogo
 	private Mediador med;
+	public Jogador[] jogadores;
+	private Bola bola;
+	private Obstaculos obstaculo;
 
-	public Futebol(int velocidadeJogo, Rectangle tamanhoBloco) {
+	private ModoJogo modoJogo;
+
+	public Futebol(int velocidadeJogo, ModoJogo modoJogo, Rectangle tamanhoBloco) {
 		super(velocidadeJogo);
 		this.tamanhoBloco = tamanhoBloco;
-		//while(frame.getWidth() <= 5 || frame.getHeight() <= 5) {
-			inicializar();
-			iniciar();
-		//}
+		this.modoJogo = modoJogo;
+		inicializar();
+		iniciar();
 	}
 
-	@Override
 	protected void inicializar() {
 		img = createImage(LARGURA_TELA, ALTURA_TELA);
 		g = img.getGraphics();
-		jogador = new Jogador(this, FConstantes.TAMANHO_BLOCO_MEDIO, med);
-		jogador.setCor(Color.green);
-		teclado = new Teclado(jogador);
-		obstaculo1 = new Obstaculos(this);
-		obstaculo2 = new Obstaculos(this);
-		bola = new Bola(this, jogador);
-		med = new Mediador(this, jogador, bola);
+		jogadores = new Jogador[2];
+		jogadores[0] = new Jogador(this, 0, tamanhoBloco, med);
+		jogadores[1] = new Jogador(this, 1, tamanhoBloco, med);
+		bola = new Bola(this);
+		obstaculo = new Obstaculos(this);
+		med = new Mediador(this, jogadores, bola, this.obstaculo);
 		bola.setMediador(med);
 		bola.comecarMover();
-		addKeyListener(teclado);
+		if (modoJogo == ModoJogo.JOGO)
+			addKeyListener(new TecladoJogo(jogadores));
+		else
+			addKeyListener(new TecladoTreino(jogadores));
 	}
 
-	@Override
 	protected void iniciar() {
-		thread = new Thread(this, "Paredao");
+		thread = new Thread(this, "Tenis");
 		thread.start();
 	}
 
-	@Override
-	public void run() {
-		while (true) {
-			desenhaCampo(g);
-			jogador.desenhar(g);
-			bola.desenhar(g);
-			bola.mover();
-			obstaculo1.desenhar(g);
-			obstaculo2.desenhar(g);
-			obstaculo1.mover();
-			obstaculo2.mover();
-			jogador.atualizar();
-			jogador.desenharPontuacao(g);
-			obstaculo1.mover();
-			obstaculo2.mover();
-			obstaculo1.mover();
-			obstaculo2.mover();
-			repaint();
-			try {
-				Thread.sleep(1000 / UPDATE_RATE);
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
-			}
-		}
+	public void parar() {
+		thread.interrupt();
 	}
-	
+
 	public void paint(Graphics g) {
 		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, this);
 	}
@@ -94,12 +68,39 @@ public class Futebol extends FPong implements Runnable {
 		paint(g);
 	}
 
+	@Override
+	public void run() {
+		while (true) {
+			desenhaCampo(g);
+			jogadores[0].desenharPontuacao(g);
+			jogadores[1].desenharPontuacao(g);
+			desenhaJogadores(jogadores, g);
+			bola.desenhar(g);
+			bola.mover();
+			obstaculo.desenhar(g);
+			obstaculo.mover();
+			jogadores[0].atualizar();
+			jogadores[1].atualizar();
+			repaint();
+			try {
+				Thread.sleep((int) (1000 / UPDATE_RATE));
+			} catch (InterruptedException ie) {
+				System.err.print("Interrompido!\n" + ie);
+			}
+		}
+	}
+
+	private void desenhaJogadores(Jogador[] jogadores, Graphics g) {
+		for (Jogador j : jogadores) {
+			j.desenhar(g);
+		}
+	}
+
 	private void desenhaCampo(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
 		g.setColor(Color.white);
 		g.fillRect(0, 0, LARGURA_TELA, TOPO_CAMPO);
 		g.fillRect(0, INFERIOR_CAMPO, LARGURA_TELA, TOPO_CAMPO);
-		g.fillRect(DIREITA_CAMPO, 0, TOPO_CAMPO, ALTURA_TELA);
 	}
 }

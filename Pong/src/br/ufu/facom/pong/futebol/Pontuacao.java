@@ -6,5 +6,4 @@ public class Pontuacao extends FPontuacao{
 	public Pontuacao(Futebol jogo, int idJogador) {
 		super(jogo, idJogador);
 	}
-
 }
