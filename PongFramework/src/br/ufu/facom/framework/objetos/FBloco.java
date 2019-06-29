@@ -13,7 +13,7 @@ public class FBloco {
 	
 	private Color cor;
 	
-	public FBloco(Rectangle bloco, int x, int y, FMediador med) {
+	public FBloco(Rectangle bloco, int x, int y) {
 		this.bloco = bloco;
 		this.x = x;
 		this.y = y;

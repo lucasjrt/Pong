@@ -1,12 +1,12 @@
-package br.ufu.facom.pong.tenis;
+package br.ufu.facom.pong.futebol;
 
 import br.ufu.facom.framework.objetos.FBola;
 import br.ufu.facom.framework.objetos.FConstantes;
 
 public class Bola extends FBola {
 	
-	private Tenis jogo;
-	public Bola(Tenis jogo) {
+	private Futebol jogo;
+	public Bola(Futebol jogo) {
 		super(jogo);
 		this.jogo = jogo;
 		setPosicao(jogo.LARGURA_TELA >> 1, jogo.ALTURA_TELA >> 1);
@@ -15,17 +15,27 @@ public class Bola extends FBola {
 	
 	public void mover() {
 		setPosicao(getX() + vx, getY() + vy);
-		if (getTopo() <= this.jogo.TOPO_CAMPO || getInferior() >= jogo.INFERIOR_CAMPO)
+		if (getTopo() <= jogo.TOPO_CAMPO || getInferior() >= jogo.INFERIOR_CAMPO)
 			vy = -vy;
-		
-		if (getX() <= 0) {
+		if (getDireita() + 2*FConstantes.TAMANHO_BOLA < 0) {
 			med.pontua(1);
+			try {
+				Thread.sleep((int) (300));
+			} catch (InterruptedException ie) {
+				System.err.print("Interrompido!\n" + ie);
+			}
 			setPosicao(med.getX(1), med.getY(1) - jogo.VELOCIDADE_JOGO);
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
 			if(Math.random() > 0.5)
 				vy = -vy;
-		} else if (getX() >= jogo.LARGURA_TELA) {
+		} else if (getEsquerda() - 2*FConstantes.TAMANHO_BOLA > jogo.LARGURA_TELA) {
 			med.pontua(0);
+			try {
+				Thread.sleep((int) (300));
+			} catch (InterruptedException ie) {
+				System.err.print("Interrompido!\n" + ie);
+			}
+			
 			setPosicao(med.getX(0), med.getY(0) + jogo.VELOCIDADE_JOGO);	
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
 			if(Math.random() > 0.5)
@@ -34,4 +44,5 @@ public class Bola extends FBola {
 
 		med.mover();
 	}
+	
 }

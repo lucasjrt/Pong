@@ -32,9 +32,6 @@ public class Paredao extends FPong implements Runnable {
 
 	@Override
 	protected void inicializar() {
-		if(bs == null)
-			createBufferStrategy(2);
-		bs = getBufferStrategy();
 		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_RGB);
 		g = img.getGraphics();
 		jogador = new Jogador(this, FConstantes.TAMANHO_BLOCO_MEDIO, med);
