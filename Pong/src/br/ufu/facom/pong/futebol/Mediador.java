@@ -1,25 +1,27 @@
 package br.ufu.facom.pong.futebol;
 
-import java.awt.Color;
-
 import br.ufu.facom.framework.objetos.FConstantes;
 import br.ufu.facom.framework.objetos.FMediador;
+import br.ufu.facom.pong.futebol.Bloco;
+import br.ufu.facom.pong.futebol.Obstaculos;
 
 public class Mediador extends FMediador {
-	private Futebol jogo;
+	private Jogador[] jogadores;
 	private Bola bola;
-	private Jogador jogador;
+	private Futebol jogo;
+	private Obstaculos obstaculo;
 
-	public Mediador(Futebol jogo, Jogador jogador, Bola bola) {
-		super(jogador);
+	public Mediador(Futebol jogo, Jogador[] jogadores, Bola bola, Obstaculos obstaculo) {
+		super(jogadores);
+		this.obstaculo = obstaculo;
 		this.jogo = jogo;
+		this.jogadores = jogadores;
 		this.bola = bola;
-		this.jogador = jogador;
 	}
 
 	private Jogador colide(Bola bola, Jogador jogador) {
 		if ((bola.getEsquerda() <= jogador.getDireita()
-				&& bola.getDireita() >= jogador.getEsquerda())) { // Verificação horizontal
+				&& bola.getDireita() >= jogador.getEsquerda() && jogador.getIdJogador() == 0)) { // Verificação horizontal
 			if (bola.getInferior() >= jogador.getTopo()
 					&& bola.getTopo() <= jogador.getInferior()) { // Verificação vertical
 				bola.setPosicao(jogador.getDireita() + (FConstantes.TAMANHO_BOLA >> 1),
@@ -27,27 +29,45 @@ public class Mediador extends FMediador {
 				return jogador;
 			} // Fim verificação vertical
 		} // Fim verificação horizontal
+		if ((bola.getDireita() >= jogador.getEsquerda()
+				&& bola.getEsquerda() <= jogador.getDireita() && jogador.getIdJogador() == 1))
+			if (bola.getY() >= jogador.getY() - (jogo.tamanhoBloco.height >> 1)
+					&& bola.getY() <= jogador.getY() + (jogo.tamanhoBloco.height >> 1)) {
+				bola.setPosicao(jogador.getEsquerda() - (FConstantes.TAMANHO_BOLA >> 1),
+						bola.getY());
+				return jogador;
+			}
 		return null;
+	}
+
+	public void pontua(int idJogador) {
+		jogadores[idJogador].setPontuacao(jogadores[idJogador].getPontuacao() + 1);
 	}
 
 	@Override
 	public void mover() {
 		int aumVy = 0;
 		boolean colide = false;
-		if (colide(bola, jogador) != null) {
-			if(jogador.getIdJogador() == 0) {
-				jogador.setCor(Color.blue);
-				jogador.setIdJogador(1);
-			} else {
-				jogador.setCor(Color.green);
-				jogador.setIdJogador(0);
-			}
+		if (colide(bola, jogadores[0]) != null) {
 			colide = true;
 			bola.setVx(-bola.getVx());
-			aumVy = (jogo.VELOCIDADE_JOGO * (bola.getY() - jogador.getY()))
+			aumVy = (jogo.VELOCIDADE_JOGO * (bola.getY() - jogadores[0].getY()))
+					/ jogo.tamanhoBloco.height;
+		} else if (colide(bola, jogadores[1]) != null) {
+			colide = true;
+			bola.setVx(-bola.getVx());
+			aumVy = (jogo.VELOCIDADE_JOGO * (bola.getY() - jogadores[1].getY()))
 					/ jogo.tamanhoBloco.height;
 		}
-		if (colide) {
+		
+		Bloco bloco = colisaoBloco();
+		if(bloco != null) {
+			bola.setVx(-bola.getVx());
+			aumVy = (jogo.VELOCIDADE_JOGO * (bola.getY() - bloco.getY()))
+					/ jogo.tamanhoBloco.height;
+		}
+		
+		if (colide || bloco != null) {
 			if (bola.getVy() + aumVy <= jogo.VELOCIDADE_JOGO
 					&& bola.getVy() + aumVy >= -jogo.VELOCIDADE_JOGO)
 				bola.setVy(bola.getVy() + aumVy);
@@ -57,10 +77,24 @@ public class Mediador extends FMediador {
 				bola.setVy(jogo.VELOCIDADE_JOGO);
 		}
 	}
-
-	@Override
-	public void pontua(int arg0) {
-		jogador.setPontuacao(jogador.getPontuacao() + 1, jogador.getIdJogador());
+	
+	private Bloco colisaoBloco() {
+		for(int i=0; i<6; i++) {
+			if(bola.getVx()>0) {
+				if(bola.getDireita() >= obstaculo.bloco.get(i).getEsquerda()
+						&& bola.getEsquerda() < obstaculo.bloco.get(i).getDireita()
+						&& bola.getInferior() >= obstaculo.bloco.get(i).getTopo()
+						&& bola.getTopo() <= obstaculo.bloco.get(i).getInferior()) {
+					return obstaculo.bloco.get(i);
+				}
+			}
+			if(bola.getEsquerda() <= obstaculo.bloco.get(i).getDireita()
+					&& bola.getDireita() > obstaculo.bloco.get(i).getEsquerda()
+					&& bola.getInferior() >= obstaculo.bloco.get(i).getTopo()
+					&& bola.getTopo() <= obstaculo.bloco.get(i).getInferior()) {
+				return obstaculo.bloco.get(i);
+			}
+		}
+		return null;
 	}
-
 }
