@@ -37,8 +37,8 @@ public class Menu extends JPanel{
 			{"Lento", "Medio", "Rapido", "Crescente"},
 			{"Pequeno", "Medio", "Grande"}};
 	
-	public int[] selecionado = {0, 0, 1, 1}; // Posi√ß√£o do vetor de cada op√ß√£o que est√° selecionada
-	public int atual = 0; // Op√ß√£o do menu selecionada para ser modificada
+	public int[] selecionado = {0, 0, 1, 1}; // PosiÁ„o do vetor de cada opÁ„o que est· selecionada
+	public int atual = 0; // OpÁ„o do menu selecionada para ser modificada
 	
 	public Menu() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -185,7 +185,7 @@ public class Menu extends JPanel{
 				break;
 			case 1:
 				// Futebol
-				new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO);
+				new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
 				break;
 			case 2:		
 				new Paredao(velocidade, tamanhoBloco);
@@ -210,6 +210,7 @@ public class Menu extends JPanel{
 //		p.iniciar();
 		//new Menu();
 		//ModoJogo modo = new ModoJogo();
-		new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO);
+		new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
+		System.out.printf("Tamanho bola %d\n",FConstantes.TAMANHO_BOLA);
 	}
 }
