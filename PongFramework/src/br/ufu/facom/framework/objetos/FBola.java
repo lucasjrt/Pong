@@ -47,9 +47,7 @@ public abstract class FBola {
 		}
 	}
 	
-	public abstract void mover();
-	
-	/*public void mover() {
+	public void mover() {
 		setPosicao(getX() + vx, getY() + vy);
 		if (getTopo() <= jogo.TOPO_CAMPO || getInferior() >= jogo.INFERIOR_CAMPO)
 			vy = -vy;
@@ -70,7 +68,6 @@ public abstract class FBola {
 
 		med.mover();
 	}
-	*/
 	
 	public int getX() {
 		return x;

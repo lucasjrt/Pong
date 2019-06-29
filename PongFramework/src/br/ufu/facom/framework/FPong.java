@@ -1,16 +1,15 @@
 package br.ufu.facom.framework;
 
-import java.awt.Canvas;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public abstract class FPong extends Canvas {
+public abstract class FPong extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	protected JFrame frame;
@@ -24,8 +23,6 @@ public abstract class FPong extends Canvas {
 	public final int INFERIOR_CAMPO;
 	
 	public Rectangle tamanhoBloco;
-	
-	public BufferStrategy bs;
 	
 	public FPong(int velocidadeJogo) {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -42,12 +39,12 @@ public abstract class FPong extends Canvas {
 		requestFocus();
 		addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
-			public void keyPressed(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
 					System.exit(0);
 				}
 			}
+			public void keyPressed(KeyEvent e) {}
 		});
 	}
 	
@@ -63,6 +60,6 @@ public abstract class FPong extends Canvas {
 		frame.setVisible(true);
 	}
 	
-	protected abstract void inicializar();
 	protected abstract void iniciar();
+	protected abstract void inicializar();
 }

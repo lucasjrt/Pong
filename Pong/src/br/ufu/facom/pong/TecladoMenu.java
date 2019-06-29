@@ -4,14 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class TecladoMenu implements KeyListener{
-	protected MenuJogo menu;
-	protected boolean shiftPressionado= false;
+	private boolean shiftPressionado= false;
+
+	private Menu menu;
 	
-	public TecladoMenu(MenuJogo menu) {
+	public TecladoMenu(Menu menu) {
 		this.menu = menu;
 	}
 	
-	public void keyTyped(KeyEvent e) {}
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 			menu.selecionado[menu.atual] = (menu.selecionado[menu.atual] + 1) % menu.conteudos[menu.atual].length;
@@ -25,13 +25,13 @@ public class TecladoMenu implements KeyListener{
 			else
 				menu.atual = (menu.atual + 1) % 4;
 		} else if(e.getKeyCode() == KeyEvent.VK_ENTER)
-			menu.submeter();
-		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-			System.exit(0);
+			menu.iniciarJogo();
 		menu.atualizaMenu();	
 	}
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_SHIFT)
 			shiftPressionado = false;
 	}
+	public void keyTyped(KeyEvent e) {}
+
 }

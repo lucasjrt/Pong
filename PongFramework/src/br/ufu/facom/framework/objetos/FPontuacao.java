@@ -49,7 +49,6 @@ public abstract class FPontuacao {
 					* (FConstantes.DISPLAY_LARGURA_NUMERO + FConstantes.ESPACAMENTO_NUMERO);
 		this.pontos = pontos;
 		atualizaNumeros();
-		
 	}
 	
 	public int getPontos() {
