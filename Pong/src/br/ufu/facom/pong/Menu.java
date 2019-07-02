@@ -37,8 +37,8 @@ public class Menu extends JPanel{
 			{"Lento", "Medio", "Rapido", "Crescente"},
 			{"Pequeno", "Medio", "Grande"}};
 	
-	public int[] selecionado = {0, 0, 1, 1}; // Posição do vetor de cada opção que está selecionada
-	public int atual = 0; // Opção do menu selecionada para ser modificada
+	public int[] selecionado = {0, 0, 1, 1}; // Posiï¿½ï¿½o do vetor de cada opï¿½ï¿½o que estï¿½ selecionada
+	public int atual = 0; // Opï¿½ï¿½o do menu selecionada para ser modificada
 	
 	public Menu() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];

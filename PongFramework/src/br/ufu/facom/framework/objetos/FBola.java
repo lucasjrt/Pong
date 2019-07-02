@@ -11,11 +11,11 @@ public abstract class FBola {
 	protected  int x, y;
 	protected int vx, vy;
 	protected int velocidade;
-	private FPong jogo;
+//	private FPong jogo;
 	protected FMediador med;
 	
 	public FBola(FPong jogo) {
-		this.jogo = jogo;
+//		this.jogo = jogo;
 		bloco = new Rectangle(FConstantes.TAMANHO_BOLA, FConstantes.TAMANHO_BOLA);
 		bloco.x = x - (FConstantes.TAMANHO_BOLA >> 1);
 		bloco.y = y - (FConstantes.TAMANHO_BOLA >> 1);

@@ -21,16 +21,6 @@ public class Mediador extends FMediador {
 
 	private Jogador colide(Bola bola, Jogador jogador) {
 		if ((bola.getEsquerda() <= jogador.getDireita()
-<<<<<<< HEAD
-				&& bola.getDireita() >= jogador.getEsquerda() && jogador.getIdJogador() == 0)) { // Verificação horizontal
-			if (bola.getInferior() >= jogador.getTopo()
-					&& bola.getTopo() <= jogador.getInferior()) { // Verificação vertical
-				bola.setPosicao(jogador.getDireita() + (FConstantes.TAMANHO_BOLA >> 1),
-						bola.getY());
-				return jogador;
-			} // Fim verificação vertical
-		} // Fim verificação horizontal
-=======
 				&& bola.getDireita() >= jogador.getEsquerda() && jogador.getIdJogador() == 0)) { // VerificaÃ§Ã£o horizontal
 			if (bola.getInferior() >= jogador.getTopo()
 					&& bola.getTopo() <= jogador.getInferior()) { // VerificaÃ§Ã£o vertical
@@ -39,7 +29,6 @@ public class Mediador extends FMediador {
 				return jogador;
 			} // Fim verificaÃ§Ã£o vertical
 		} // Fim verificaÃ§Ã£o horizontal
->>>>>>> Tarcisio
 		if ((bola.getDireita() >= jogador.getEsquerda()
 				&& bola.getEsquerda() <= jogador.getDireita() && jogador.getIdJogador() == 1))
 			if (bola.getY() >= jogador.getY() - (jogo.tamanhoBloco.height >> 1)
