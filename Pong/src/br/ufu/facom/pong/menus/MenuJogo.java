@@ -1,6 +1,7 @@
 package br.ufu.facom.pong.menus;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -8,7 +9,8 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.net.DatagramSocket;
 
-import br.ufu.facom.framework.objetos.FConstantes;
+import br.ufu.facom.framework.utilitarios.FConstantes;
+import br.ufu.facom.pong.jogos.futebol.Futebol;
 import br.ufu.facom.pong.jogos.paredao.Paredao;
 import br.ufu.facom.pong.jogos.tenis.Tenis;
 import br.ufu.facom.pong.listeners.menus.TecladoMenu;
@@ -133,8 +135,9 @@ public class MenuJogo extends Menu{
 			case 1:
 				if(multiplayer)
 					// TODO: Construtor futebol multiplayer
-				//else
-					// TODO: Construtor futebol singleplayer
+					System.out.println();
+				else
+					new Futebol(velocidade, modoJogo, tamanhoBloco);
 				// Futebol
 				break;
 			case 2:

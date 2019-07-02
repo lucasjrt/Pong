@@ -28,6 +28,8 @@ public class TecladoMenu implements KeyListener{
 				menu.atual = (menu.atual + 1) % 4;
 		} else if(e.getKeyCode() == KeyEvent.VK_ENTER)
 			menu.submeter();
+		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			System.exit(0);
 		menu.atualizaMenu();	
 	}
 	public void keyReleased(KeyEvent e) {

@@ -1,9 +1,8 @@
-package br.ufu.facom.pong.futebol;
+package br.ufu.facom.pong.jogos.futebol.objetosJogo;
 
-import br.ufu.facom.framework.objetos.FConstantes;
-import br.ufu.facom.framework.objetos.FMediador;
-import br.ufu.facom.pong.futebol.Bloco;
-import br.ufu.facom.pong.futebol.Obstaculos;
+import br.ufu.facom.framework.objetos.abstratos.FMediador;
+import br.ufu.facom.framework.utilitarios.FConstantes;
+import br.ufu.facom.pong.jogos.futebol.Futebol;
 
 public class Mediador extends FMediador {
 	private Jogador[] jogadores;

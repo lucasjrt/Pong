@@ -1,7 +1,7 @@
 package br.ufu.facom.pong.jogos.tenis.objetosJogo;
 
-import br.ufu.facom.framework.objetos.FConstantes;
-import br.ufu.facom.framework.objetos.FMediador;
+import br.ufu.facom.framework.objetos.abstratos.FMediador;
+import br.ufu.facom.framework.utilitarios.FConstantes;
 import br.ufu.facom.pong.jogos.tenis.Tenis;
 
 public class Mediador extends FMediador {

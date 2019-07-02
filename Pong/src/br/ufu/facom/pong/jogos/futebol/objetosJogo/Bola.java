@@ -1,7 +1,8 @@
-package br.ufu.facom.pong.futebol;
+package br.ufu.facom.pong.jogos.futebol.objetosJogo;
 
-import br.ufu.facom.framework.objetos.FBola;
-import br.ufu.facom.framework.objetos.FConstantes;
+import br.ufu.facom.framework.objetos.abstratos.FBola;
+import br.ufu.facom.framework.utilitarios.FConstantes;
+import br.ufu.facom.pong.jogos.futebol.Futebol;
 
 public class Bola extends FBola {
 	

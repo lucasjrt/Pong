@@ -2,8 +2,8 @@ package br.ufu.facom.pong.jogos.paredao.objetosJogo;
 
 import java.awt.Color;
 
-import br.ufu.facom.framework.objetos.FConstantes;
-import br.ufu.facom.framework.objetos.FMediador;
+import br.ufu.facom.framework.objetos.abstratos.FMediador;
+import br.ufu.facom.framework.utilitarios.FConstantes;
 import br.ufu.facom.pong.jogos.paredao.Paredao;
 
 public class Mediador extends FMediador {

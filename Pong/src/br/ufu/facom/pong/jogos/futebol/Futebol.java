@@ -1,4 +1,4 @@
-package br.ufu.facom.pong.futebol;
+package br.ufu.facom.pong.jogos.futebol;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,6 +6,12 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import br.ufu.facom.framework.FPong;
+import br.ufu.facom.pong.jogos.futebol.objetosJogo.Bola;
+import br.ufu.facom.pong.jogos.futebol.objetosJogo.Jogador;
+import br.ufu.facom.pong.jogos.futebol.objetosJogo.Mediador;
+import br.ufu.facom.pong.jogos.futebol.objetosJogo.Obstaculos;
+import br.ufu.facom.pong.listeners.jogos.futebol.TecladoJogo;
+import br.ufu.facom.pong.listeners.jogos.futebol.TecladoTreino;
 import br.ufu.facom.pong.utilitarios.ModoJogo;
 
 public class Futebol extends FPong implements Runnable {

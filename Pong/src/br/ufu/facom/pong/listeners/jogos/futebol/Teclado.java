@@ -1,7 +1,9 @@
-package br.ufu.facom.pong.futebol;
+package br.ufu.facom.pong.listeners.jogos.futebol;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import br.ufu.facom.pong.jogos.futebol.objetosJogo.Jogador;
 
 public class Teclado implements KeyListener{
 	private Jogador jogador;

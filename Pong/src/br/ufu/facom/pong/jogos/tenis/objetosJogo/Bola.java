@@ -1,6 +1,6 @@
 package br.ufu.facom.pong.jogos.tenis.objetosJogo;
 
-import br.ufu.facom.framework.objetos.FBola;
+import br.ufu.facom.framework.objetos.abstratos.FBola;
 import br.ufu.facom.pong.jogos.tenis.Tenis;
 
 public class Bola extends FBola {

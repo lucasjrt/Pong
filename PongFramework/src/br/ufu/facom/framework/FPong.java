@@ -17,7 +17,7 @@ public abstract class FPong extends Canvas {
 	public final int LARGURA_TELA;
 	public final int ALTURA_TELA;
 	
-	public final int VELOCIDADE_JOGO;
+	public int VELOCIDADE_JOGO;
 	
 	public final int TOPO_CAMPO;
 	public final int INFERIOR_CAMPO;
@@ -26,12 +26,10 @@ public abstract class FPong extends Canvas {
 	
 	public FPong(int velocidadeJogo) {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-		
 		inicializarFrame();
-		
+		device.setFullScreenWindow(frame);
 		LARGURA_TELA = frame.getWidth();
 		ALTURA_TELA = frame.getHeight();
-		device.setFullScreenWindow(frame);
 		VELOCIDADE_JOGO = velocidadeJogo;
 		TOPO_CAMPO = ALTURA_TELA >> 5;
 		INFERIOR_CAMPO = ALTURA_TELA - TOPO_CAMPO;
@@ -48,7 +46,7 @@ public abstract class FPong extends Canvas {
 		});
 	}
 	
-	private void inicializarFrame() {
+	private synchronized void inicializarFrame() {
 		frame = new JFrame("Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);

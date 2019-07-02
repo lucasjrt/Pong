@@ -18,8 +18,6 @@ public class Tenis extends FPong implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final int UPDATE_RATE = 100;
-
 	private Thread thread;
 	private BufferedImage img;
 	private BufferStrategy bs;
@@ -43,7 +41,8 @@ public class Tenis extends FPong implements Runnable {
 	protected void inicializar() {
 		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_RGB);
 		if(bs == null)
-			bs = create
+			createBufferStrategy(2);
+		bs = getBufferStrategy();
 		g = img.getGraphics();
 		jogadores = new Jogador[2];
 		jogadores[0] = new Jogador(this, 0, tamanhoBloco, med);
@@ -67,32 +66,40 @@ public class Tenis extends FPong implements Runnable {
 		thread.interrupt();
 	}
 
-	public void paint(Graphics g) {
-		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, this);
-	}
-
-	public void update(Graphics g) {
-		paint(g);
-	}
-
 	@Override
 	public void run() {
+		long lastTime = System.nanoTime();
+		final double ns = 1000000000.0 / 60.0;
+		double delta = 0;
 		while (true) {
-			desenhaCampo(g);
-			jogadores[0].desenharPontuacao(g);
-			jogadores[1].desenharPontuacao(g);
-			desenhaJogadores(jogadores, g);
-			bola.desenhar(g);
-			bola.mover();
-			jogadores[0].atualizar();
-			jogadores[1].atualizar();
-			repaint();
-			try {
-				Thread.sleep((int) (1000 / UPDATE_RATE));
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			while (delta >= 1) {
+				atualizar();
+				delta--;
 			}
+			renderizar();
 		}
+	}
+	
+	private void atualizar() {
+		bola.mover();
+		jogadores[0].atualizar();
+		jogadores[1].atualizar();
+
+	}
+	
+	private void renderizar() {
+		g = img.getGraphics();
+		desenhaCampo(g);
+		jogadores[0].desenharPontuacao(g);
+		jogadores[1].desenharPontuacao(g);
+		desenhaJogadores(jogadores, g);
+		bola.desenhar(g);
+		g = bs.getDrawGraphics();
+		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, null);
+		bs.show();
 	}
 
 	private void desenhaJogadores(Jogador[] jogadores, Graphics g) {
