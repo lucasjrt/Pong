@@ -1,32 +1,38 @@
-package br.ufu.facom.pong.futebol;
+package br.ufu.facom.pong.jogos.tenis;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import br.ufu.facom.framework.FPong;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Bola;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Jogador;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Mediador;
+import br.ufu.facom.pong.listeners.jogos.tenis.TecladoJogo;
+import br.ufu.facom.pong.listeners.jogos.tenis.TecladoTreino;
 import br.ufu.facom.pong.utilitarios.ModoJogo;
 
-public class Futebol extends FPong implements Runnable {
+public class Tenis extends FPong implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
 	private final int UPDATE_RATE = 100;
 
 	private Thread thread;
-	private Image img;
+	private BufferedImage img;
+	private BufferStrategy bs;
 	private Graphics g;
 
 	// Objetos do jogo
 	private Mediador med;
 	public Jogador[] jogadores;
 	private Bola bola;
-	private Obstaculos obstaculo;
 
 	private ModoJogo modoJogo;
 
-	public Futebol(int velocidadeJogo, ModoJogo modoJogo, Rectangle tamanhoBloco) {
+	public Tenis(int velocidadeJogo, ModoJogo modoJogo, Rectangle tamanhoBloco) {
 		super(velocidadeJogo);
 		this.tamanhoBloco = tamanhoBloco;
 		this.modoJogo = modoJogo;
@@ -35,14 +41,15 @@ public class Futebol extends FPong implements Runnable {
 	}
 
 	protected void inicializar() {
-		img = createImage(LARGURA_TELA, ALTURA_TELA);
+		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_RGB);
+		if(bs == null)
+			bs = create
 		g = img.getGraphics();
 		jogadores = new Jogador[2];
 		jogadores[0] = new Jogador(this, 0, tamanhoBloco, med);
 		jogadores[1] = new Jogador(this, 1, tamanhoBloco, med);
 		bola = new Bola(this);
-		obstaculo = new Obstaculos(this);
-		med = new Mediador(this, jogadores, bola, this.obstaculo);
+		med = new Mediador(this, jogadores, bola);
 		bola.setMediador(med);
 		bola.comecarMover();
 		if (modoJogo == ModoJogo.JOGO)
@@ -77,8 +84,6 @@ public class Futebol extends FPong implements Runnable {
 			desenhaJogadores(jogadores, g);
 			bola.desenhar(g);
 			bola.mover();
-			obstaculo.desenhar(g);
-			obstaculo.mover();
 			jogadores[0].atualizar();
 			jogadores[1].atualizar();
 			repaint();
@@ -102,5 +107,6 @@ public class Futebol extends FPong implements Runnable {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, LARGURA_TELA, TOPO_CAMPO);
 		g.fillRect(0, INFERIOR_CAMPO, LARGURA_TELA, TOPO_CAMPO);
+		g.fillRect((LARGURA_TELA >> 1) - (LARGURA_TELA >> 7), 0, LARGURA_TELA >> 7, ALTURA_TELA);
 	}
 }

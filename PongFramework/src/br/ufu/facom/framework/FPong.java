@@ -1,5 +1,6 @@
 package br.ufu.facom.framework;
 
+import java.awt.Canvas;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
@@ -7,9 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public abstract class FPong extends JPanel {
+public abstract class FPong extends Canvas {
 	private static final long serialVersionUID = 1L;
 	
 	protected JFrame frame;
