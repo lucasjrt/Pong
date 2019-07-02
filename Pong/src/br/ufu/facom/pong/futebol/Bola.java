@@ -19,29 +19,19 @@ public class Bola extends FBola {
 			vy = -vy;
 		if (getDireita() + 2*FConstantes.TAMANHO_BOLA < 0) {
 			med.pontua(1);
-			try {
-				Thread.sleep((int) (300));
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
-			}
 			setPosicao(med.getX(1), med.getY(1) - jogo.VELOCIDADE_JOGO);
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
 			if(Math.random() > 0.5)
 				vy = -vy;
+			vx = velocidade;
 		} else if (getEsquerda() - 2*FConstantes.TAMANHO_BOLA > jogo.LARGURA_TELA) {
 			med.pontua(0);
-			try {
-				Thread.sleep((int) (300));
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
-			}
-			
 			setPosicao(med.getX(0), med.getY(0) + jogo.VELOCIDADE_JOGO);	
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
 			if(Math.random() > 0.5)
 				vy = -vy;
+			vx = velocidade;
 		}
-
 		med.mover();
 	}
 	

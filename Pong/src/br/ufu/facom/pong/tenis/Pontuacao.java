@@ -1,9 +1,10 @@
 package br.ufu.facom.pong.tenis;
 
+import br.ufu.facom.framework.FPong;
 import br.ufu.facom.framework.objetos.FPontuacao;
 
 public class Pontuacao extends FPontuacao{
-	public Pontuacao(Tenis jogo, int idJogador) {
+	public Pontuacao(FPong jogo, int idJogador) {
 		super(jogo, idJogador);
 	}
 }

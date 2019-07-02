@@ -19,6 +19,8 @@ import br.ufu.facom.framework.objetos.FConstantes;
 import br.ufu.facom.pong.futebol.Futebol;
 import br.ufu.facom.pong.paredao.Paredao;
 import br.ufu.facom.pong.tenis.Tenis;
+import br.ufu.facom.pong.tenis.TenisMultiplayerClient;
+import br.ufu.facom.pong.tenis.TenisMultiplayerServer;
 
 public class Menu extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -37,8 +39,8 @@ public class Menu extends JPanel{
 			{"Lento", "Medio", "Rapido", "Crescente"},
 			{"Pequeno", "Medio", "Grande"}};
 	
-	public int[] selecionado = {0, 0, 1, 1}; // Posição do vetor de cada opção que está selecionada
-	public int atual = 0; // Opção do menu selecionada para ser modificada
+	public int[] selecionado = {0, 0, 1, 1}; // Posiï¿½ï¿½o do vetor de cada opï¿½ï¿½o que estï¿½ selecionada
+	public int atual = 0; // Opï¿½ï¿½o do menu selecionada para ser modificada
 	
 	public Menu() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -145,7 +147,7 @@ public class Menu extends JPanel{
 				modoJogo = ModoJogo.TREINO;
 				break;
 			case 2:
-				modoJogo = ModoJogo.MULTIPLAYER;
+				modoJogo = ModoJogo.MULTIPLAYER_SERVER;
 				break;
 			default:
 				modoJogo = ModoJogo.JOGO;
@@ -185,7 +187,7 @@ public class Menu extends JPanel{
 				break;
 			case 1:
 				// Futebol
-				new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
+				new Futebol(velocidade, modoJogo, tamanhoBloco);
 				break;
 			case 2:		
 				new Paredao(velocidade, tamanhoBloco);
@@ -208,9 +210,11 @@ public class Menu extends JPanel{
 //		FPong p = new Paredao(FConstantes.BOLA_VELOCIDADE_ALTA, FConstantes.TAMANHO_BLOCO_MEDIO);
 //		p.inicializar();
 //		p.iniciar();
-		//new Menu();
+		new Menu();
 		//ModoJogo modo = new ModoJogo();
-		new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
-		System.out.printf("Tamanho bola %d\n",FConstantes.TAMANHO_BOLA);
+		//new Futebol(FConstantes.BOLA_VELOCIDADE_MEDIA, ModoJogo.JOGO, FConstantes.TAMANHO_BLOCO_MEDIO);
+		//new TenisMultiplayerServer(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO);
+		
+		//new TenisMultiplayerClient(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO, "127.0.0.1");
 	}
 }

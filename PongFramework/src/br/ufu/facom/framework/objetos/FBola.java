@@ -49,29 +49,6 @@ public abstract class FBola {
 	
 	public abstract void mover();
 	
-	/*public void mover() {
-		setPosicao(getX() + vx, getY() + vy);
-		if (getTopo() <= jogo.TOPO_CAMPO || getInferior() >= jogo.INFERIOR_CAMPO)
-			vy = -vy;
-		
-		if (getX() <= 0) {
-			med.pontua(1);
-			setPosicao(med.getX(1), med.getY(1) - jogo.VELOCIDADE_JOGO);
-			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
-			if(Math.random() > 0.5)
-				vy = -vy;
-		} else if (getX() >= jogo.LARGURA_TELA) {
-			med.pontua(0);
-			setPosicao(med.getX(0), med.getY(0) + jogo.VELOCIDADE_JOGO);	
-			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
-			if(Math.random() > 0.5)
-				vy = -vy;
-		}
-
-		med.mover();
-	}
-	*/
-	
 	public int getX() {
 		return x;
 	}

@@ -13,6 +13,7 @@ public abstract class FMediador {
 	}
 	
 	public abstract void mover();
+	
 	public abstract void pontua(int idJogador);
 	
 	public int getX(int idJogador) {

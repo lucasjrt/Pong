@@ -25,8 +25,8 @@ public class Mediador extends FMediador {
 				bola.setPosicao(jogador.getDireita() + (FConstantes.TAMANHO_BOLA >> 1),
 						bola.getY());
 				return jogador;
-			} // Fim verificação vertical
-		} // Fim verificação horizontal
+			} // Fim verificacao vertical
+		} // Fim verificacao horizontal
 		return null;
 	}
 

@@ -35,7 +35,6 @@ public class Bola extends FBola{
 			setPosicao(jogo.DIREITA_CAMPO - (FConstantes.TAMANHO_BOLA >> 1), y);	
 			vx = -vx;
 		}
-
 		med.mover();
 	}
 

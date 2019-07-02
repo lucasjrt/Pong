@@ -1,14 +1,15 @@
 package br.ufu.facom.pong.tenis;
 
+import br.ufu.facom.framework.FPong;
 import br.ufu.facom.framework.objetos.FConstantes;
 import br.ufu.facom.framework.objetos.FMediador;
 
 public class Mediador extends FMediador {
 	private Jogador[] jogadores;
 	private Bola bola;
-	private Tenis jogo;
+	private FPong jogo;
 
-	public Mediador(Tenis jogo, Jogador[] jogadores, Bola bola) {
+	public Mediador(FPong jogo, Jogador[] jogadores, Bola bola) {
 		super(jogadores);
 		this.jogo = jogo;
 		this.jogadores = jogadores;
@@ -23,8 +24,8 @@ public class Mediador extends FMediador {
 				bola.setPosicao(jogador.getDireita() + (FConstantes.TAMANHO_BOLA >> 1),
 						bola.getY());
 				return jogador;
-			} // Fim verificação vertical
-		} // Fim verificação horizontal
+			} // Fim verificacao vertical
+		} // Fim verificacao horizontal
 		if ((bola.getDireita() >= jogador.getEsquerda()
 				&& bola.getEsquerda() <= jogador.getDireita() && jogador.getIdJogador() == 1))
 			if (bola.getY() >= jogador.getY() - (jogo.tamanhoBloco.height >> 1)

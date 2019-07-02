@@ -11,7 +11,6 @@ import br.ufu.facom.pong.ModoJogo;
 public class Futebol extends FPong implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-
 	private final int UPDATE_RATE = 100;
 
 	private Thread thread;

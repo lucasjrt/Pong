@@ -27,10 +27,11 @@ public abstract class FPong extends JPanel {
 	public FPong(int velocidadeJogo) {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 		
+			
 		inicializarFrame();
-		
 		LARGURA_TELA = frame.getWidth();
-		ALTURA_TELA = frame.getHeight();
+		ALTURA_TELA = frame.getHeight(); 
+		
 		device.setFullScreenWindow(frame);
 		VELOCIDADE_JOGO = velocidadeJogo;
 		TOPO_CAMPO = ALTURA_TELA >> 5;
@@ -51,7 +52,7 @@ public abstract class FPong extends JPanel {
 	private void inicializarFrame() {
 		frame = new JFrame("Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
+		frame.setResizable(false);
 		frame.add(this);
 		frame.setUndecorated(true);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

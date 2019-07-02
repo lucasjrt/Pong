@@ -20,7 +20,6 @@ public class Obstaculos{
 		Obstaculo1Subindo = false;
 		Obstaculo2Subindo = true;
 		bloco = new ArrayList<Bloco>();
-		System.out.println(jogo.ALTURA_TELA/6);
 		int meio = (jogo.INFERIOR_CAMPO-jogo.TOPO_CAMPO)/2+jogo.TOPO_CAMPO;
 		bloco.add(new Bloco(new Rectangle(FConstantes.TAMANHO_BLOCO_PEQUENO), 3*jogo.LARGURA_TELA/10, (meio-FConstantes.TAMANHO_BLOCO_PEQUENO.height/2-jogo.TOPO_CAMPO)/2+jogo.TOPO_CAMPO));
 		bloco.add(new Bloco(new Rectangle(FConstantes.TAMANHO_BLOCO_PEQUENO), 3*jogo.LARGURA_TELA/10, meio));

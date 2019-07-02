@@ -11,7 +11,6 @@ import br.ufu.facom.pong.ModoJogo;
 public class Tenis extends FPong implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-
 	private final int UPDATE_RATE = 100;
 
 	private Thread thread;
@@ -45,7 +44,7 @@ public class Tenis extends FPong implements Runnable {
 		bola.comecarMover();
 		if (modoJogo == ModoJogo.JOGO)
 			addKeyListener(new TecladoJogo(jogadores));
-		else
+		if(modoJogo == ModoJogo.TREINO)
 			addKeyListener(new TecladoTreino(jogadores));
 	}
 

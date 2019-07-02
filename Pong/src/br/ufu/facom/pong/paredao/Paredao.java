@@ -30,10 +30,8 @@ public class Paredao extends FPong implements Runnable {
 	public Paredao(int velocidadeJogo, Rectangle tamanhoBloco) {
 		super(velocidadeJogo);
 		this.tamanhoBloco = tamanhoBloco;
-		//while(frame.getWidth() <= 5 || frame.getHeight() <= 5) {
-			inicializar();
-			iniciar();
-		//}
+		inicializar();
+		iniciar();
 	}
 
 	@Override
