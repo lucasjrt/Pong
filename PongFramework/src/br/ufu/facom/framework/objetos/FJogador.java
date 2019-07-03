@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import br.ufu.facom.framework.FPong;
+import br.ufu.facom.framework.objetos.ferramentas.FBloco;
 
 public abstract class FJogador {
 	protected int idJogador;

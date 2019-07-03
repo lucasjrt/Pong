@@ -5,17 +5,18 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import br.ufu.facom.framework.FPong;
+import br.ufu.facom.framework.utilitarios.FConstantes;
 
 public abstract class FBola {
 	protected Rectangle bloco;			// Area de renderizaca da bola
 	protected  int x, y;
 	protected int vx, vy;
 	protected int velocidade;
-	private FPong jogo;
+//	private FPong jogo;
 	protected FMediador med;
 	
 	public FBola(FPong jogo) {
-		this.jogo = jogo;
+//		this.jogo = jogo;
 		bloco = new Rectangle(FConstantes.TAMANHO_BOLA, FConstantes.TAMANHO_BOLA);
 		bloco.x = x - (FConstantes.TAMANHO_BOLA >> 1);
 		bloco.y = y - (FConstantes.TAMANHO_BOLA >> 1);

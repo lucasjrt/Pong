@@ -1,13 +1,17 @@
 package br.ufu.facom.framework.objetos;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import br.ufu.facom.framework.FPong;
+import br.ufu.facom.framework.objetos.ferramentas.FDisplay;
+import br.ufu.facom.framework.utilitarios.FConstantes;
 
 public abstract class FPontuacao {
 	private int idJogador;
 	private int pontos;
+	private Color cor;
 
 	private int x, y; // Canto superior esquerdo do numero mais a direita
 
@@ -18,6 +22,7 @@ public abstract class FPontuacao {
 		this.x = (jogo.LARGURA_TELA >> 1) + (idJogador == 0 ? - ((jogo.LARGURA_TELA>>5)+FConstantes.DISPLAY_LARGURA_NUMERO+FConstantes.ESPACAMENTO_NUMERO) : ((jogo.LARGURA_TELA>>5)+FConstantes.DISPLAY_LARGURA_NUMERO+FConstantes.ESPACAMENTO_NUMERO));
 		this.y = jogo.ALTURA_TELA >> 3;
 		this.numeros = new ArrayList<FDisplay>();
+		cor = Color.white;
 		numeros.add(new FDisplay(pontos, x, y));
 		if(idJogador == 1) {
 			this.x -= FConstantes.DISPLAY_LARGURA_NUMERO;
@@ -26,9 +31,12 @@ public abstract class FPontuacao {
 	}
 
 	public void desenhar(Graphics g) {
+		Color temp = g.getColor();
+		g.setColor(cor);
 		for(FDisplay d : numeros) {
 			d.desenhar(g);
 		}
+		g.setColor(temp);
 	}
 
 	private int contaDigitos(int n) {
@@ -68,5 +76,13 @@ public abstract class FPontuacao {
 			temp /= 10;
 			numeros.get(i).setPosicao(x - (FConstantes.DISPLAY_LARGURA_NUMERO + FConstantes.ESPACAMENTO_NUMERO)*i, y);
 		}
+	}
+	
+	public void setCor(Color cor) {
+		this.cor = cor;
+	}
+	
+	public Color getCor() {
+		return cor;
 	}
 }

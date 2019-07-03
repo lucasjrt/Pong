@@ -12,8 +12,12 @@ public abstract class FMediador {
 		this.jogadores = jogadores;
 	}
 	
+<<<<<<< HEAD
 	public abstract void mover();
 	
+=======
+	public abstract void atualizar();
+>>>>>>> master
 	public abstract void pontua(int idJogador);
 	
 	public int getX(int idJogador) {
