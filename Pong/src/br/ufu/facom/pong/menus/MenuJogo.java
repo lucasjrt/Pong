@@ -92,7 +92,7 @@ public class MenuJogo extends Menu{
 			case 2:
 				multiplayer = true;
 				modoJogo = ModoJogo.MULTIPLAYER;
-//				MenuMultiplayer mm = new MenuMultiplayer(this);
+				MenuMultiplayer mm = new MenuMultiplayer(this);
 				break;
 			default:
 				modoJogo = ModoJogo.JOGO;
