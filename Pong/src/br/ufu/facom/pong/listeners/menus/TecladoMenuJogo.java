@@ -5,20 +5,20 @@ import java.awt.event.KeyListener;
 
 import br.ufu.facom.pong.menus.MenuJogo;
 
-public class TecladoMenu implements KeyListener{
+public class TecladoMenuJogo implements KeyListener{
 	private boolean shiftPressionado= false;
 
 	private MenuJogo menu;
 	
-	public TecladoMenu(MenuJogo menu) {
+	public TecladoMenuJogo(MenuJogo menu) {
 		this.menu = menu;
 	}
 	
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-			menu.selecionado[menu.atual] = (menu.selecionado[menu.atual] + 1) % menu.conteudos[menu.atual].length;
+			menu.prox();
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT)
-			menu.selecionado[menu.atual] = (menu.selecionado[menu.atual] + menu.conteudos[menu.atual].length - 1) % menu.conteudos[menu.atual].length;
+			menu.ant();
 		else if (e.getKeyCode() == KeyEvent.VK_SHIFT) 
 			shiftPressionado = true;
 		else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -30,7 +30,7 @@ public class TecladoMenu implements KeyListener{
 			menu.submeter();
 		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
 			System.exit(0);
-		menu.atualizaMenu();	
+		menu.getPai().atualizaMenu();	
 	}
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_SHIFT)

@@ -5,38 +5,37 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public abstract class Menu extends JPanel {
+import br.ufu.facom.pong.utilitarios.ModoJogo;
+
+public class Menu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected final int LARGURA_TELA;
 	protected final int ALTURA_TELA;
 
 	protected JFrame frame;
-
-	private BufferedImage img;
-	private Graphics g;
-
-	public int[] selecionado = { 0, 0, 1, 1 }; // Posicao do vetor de cada opcao que esta selecionada
-	public int atual = 0; // Opcao do menu selecionada para ser modificada
-
+	private TemplateMenu menuAtual;
+	
+	public int velocidadeJogo;
+	public Rectangle tamanhoBloco;
+	public ModoJogo modoJogo;
+	public boolean multiplayer;
+	
 	public Menu() {
 		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+		LARGURA_TELA = device.getDisplayMode().getWidth();
+		ALTURA_TELA = device.getDisplayMode().getHeight();
 		inicializarFrame();
+		menuAtual = new MenuJogo(this);
+		menuAtual.habilitar();
 		device.setFullScreenWindow(frame);
-		LARGURA_TELA = frame.getWidth();
-		ALTURA_TELA = frame.getHeight();
-		inicializar();
 		requestFocus();
-	}
-
-	private void inicializar() {
-		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_BGR);
-		g = img.getGraphics();
+		repaint();
 	}
 
 	private void inicializarFrame() {
@@ -61,20 +60,35 @@ public abstract class Menu extends JPanel {
 	}
 
 	public void atualizaMenu() {
-		desenhaMenu(g);
+		menuAtual.desenhaMenu();
 		repaint();
 	}
 
 	public void paint(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
-		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, this);
+		menuAtual.desenhaMenu();
+		g.drawImage(menuAtual.getImage(), 0, 0, LARGURA_TELA, ALTURA_TELA, this);
 	}
 
 	public void update(Graphics g) {
 		paint(g);
 	}
-
-	public abstract void submeter();
-	protected abstract void desenhaMenu(Graphics g);
+	
+	public TemplateMenu getMenuAtual() {
+		return menuAtual;
+	}
+	
+	public void setMenuAtual(TemplateMenu menu) {
+		menuAtual.desabilitar();
+		menuAtual = menu;
+		menu.habilitar();
+	}
+	
+	public static void main(String[] args) {
+		new Menu();
+//		new MenuMultiplayer();
+//		new TenisMultiplayerServer(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO);
+//		new TenisMultiplayerClient(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO, "127.0.0.1");
+	}
 }

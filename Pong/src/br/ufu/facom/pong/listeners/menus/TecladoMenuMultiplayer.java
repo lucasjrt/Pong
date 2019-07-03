@@ -13,19 +13,15 @@ public class TecladoMenuMultiplayer implements KeyListener{
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-			System.exit(0);
-		else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 			menu.selecionado = (menu.selecionado + 1) % 2;
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT)
 			menu.selecionado = (menu.selecionado + 1) % 2;
-		else if(e.getKeyCode() == KeyEvent.VK_UP)
-			menu.selecionado = 2;
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN)
-			menu.selecionado = 1;
 		else if(e.getKeyCode() == KeyEvent.VK_ENTER)
 			menu.submeter();
-		menu.atualizaMenu();
+		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			System.exit(0);
+		menu.getPai().atualizaMenu();
 	}
 	public void keyTyped(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) {}

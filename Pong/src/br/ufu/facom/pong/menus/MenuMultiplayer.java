@@ -3,91 +3,52 @@ package br.ufu.facom.pong.menus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
-import br.ufu.facom.pong.listeners.menus.TecladoCaixaIP;
+import br.ufu.facom.pong.jogos.tenis.multiplayer.TenisMultiplayerServer;
 import br.ufu.facom.pong.listeners.menus.TecladoMenuMultiplayer;
 
-public class MenuMultiplayer extends Menu {
-	private static final long serialVersionUID = 1L;
-	public int selecionado = 2; // 0 Botão voltar, 1 Botão para conectar com o ip, 2 Caixa de ip
-	private String[] titulos = { "Voltar", "Conectar" };
-	public String ipHost = "127.0.0.1"; // caso essa instância for se conectar em outra máquina, este valor deixa
-											// de ser null
+public class MenuMultiplayer extends TemplateMenu {
+	public int selecionado = 0; // 0 Jogador 1, 1 Jogador 2
+	private String[] titulos = { "Jogador 1", "Jogador 2" };
+	private KeyListener teclado;
 
-	DatagramSocket ds;
-	MenuJogo menu;
-
-	public MenuMultiplayer(MenuJogo menu) {
-		atualizaMenu();
-		addKeyListener(new TecladoMenuMultiplayer(this));
-		addKeyListener(new TecladoCaixaIP(this));
+	public MenuMultiplayer(Menu menu) {
+		super(menu);
+		teclado = new TecladoMenuMultiplayer(this);
 	}
 
-	@Override
 	public void submeter() {
-		if (selecionado == 1 || selecionado == 2) 
-			try {
-				ds = new DatagramSocket(1234, InetAddress.getByName(ipHost));
-				menu.frame.setEnabled(true);
-			} catch (UnknownHostException | SocketException e) {
-				e.printStackTrace();
-			}
-		frame.setVisible(false);
-		frame.dispose();
+		if(selecionado == 0) {
+			menu.frame.setVisible(false);
+			menu.frame.setEnabled(false);
+			new TenisMultiplayerServer(menu.velocidadeJogo, menu.tamanhoBloco);
+		}
+		else
+			menu.setMenuAtual(new MenuCliente(menu));
 	}
-
+	
 	@Override
-	protected void desenhaMenu(Graphics g) {
+	public void desenhaMenu() {
 		Font f = new Font("monospace", Font.PLAIN, 256);
 		FontRenderContext frc = new FontRenderContext(null, true, true);
 		g.setColor(Color.black);
-		g.fillRect(0, 0, LARGURA_TELA, ALTURA_TELA);
+		g.fillRect(0, 0, menu.LARGURA_TELA, menu.ALTURA_TELA);
 		g.setColor(Color.white);
 		desenhaTitulo(g, f, frc);
 		f = new Font("monospace", Font.PLAIN, 90);
 		g.setFont(f);
-		desenhaPainelIP(g, f, frc);
 		desenhaBotoes(g, f, frc);
-	}
-
-	private void desenhaTitulo(Graphics g, Font f, FontRenderContext frc) {
-		Rectangle2D r = f.getStringBounds("Pong", frc);
-		int x = (int) (getWidth() - r.getWidth()) >> 1;
-		int y = 3 * (((int) (getHeight() + r.getHeight())) >> 4);
-		g.setFont(f);
-		g.drawString("Pong", x, y);
-	}
-
-	private void desenhaPainelIP(Graphics g, Font f, FontRenderContext frc) {
-		Color temp = g.getColor();
-		Rectangle2D r = f.getStringBounds("000.000.000.000", frc);
-		int x = (getWidth() >> 1) - ((int) r.getWidth() >> 1);
-		int y = (frame.getHeight() >> 1) - ((int) r.getHeight() >> 1);
-		if(selecionado == 2)
-			g.setColor(Color.blue);
-		else
-			g.setColor(Color.black);
-		g.fillRect(x + (int)r.getX(), y , (int)r.getWidth(), (int)r.getHeight());
-		g.setColor(Color.white);
-		g.drawRect(x, y, (int) r.getWidth(), (int) r.getHeight());
-		g.drawString(ipHost, x, y + ((int) r.getHeight()) - ((int) r.getHeight() >> 2));
-		r = f.getStringBounds("IP: ", frc);
-		g.drawString("IP: ", x - (int) r.getWidth(), y + ((int) r.getHeight()) - ((int) r.getHeight() >> 2));
-		g.setColor(temp);
 	}
 
 	private void desenhaBotoes(Graphics g, Font f, FontRenderContext frc) {
 		Color temp = g.getColor();
 		Rectangle2D r;
-		int espacamento = calculaEspacamento(titulos, f, frc);
+		int espacamento = menu.calculaEspacamento(titulos, f, frc);
 		int acumulado = espacamento;
-		int x, y = getHeight() - ((int) (getHeight()) >> 2);
+		int x, y = menu.ALTURA_TELA - ((int) (menu.ALTURA_TELA) >> 2);
 		for (int i = 0; i < titulos.length; i++) {
 			r = f.getStringBounds(titulos[i], frc);
 			x = acumulado;
@@ -104,7 +65,13 @@ public class MenuMultiplayer extends Menu {
 		g.setColor(temp);
 	}
 
-	public DatagramSocket getDatagramSocket() {
-		return ds;
+	@Override
+	public void habilitar() {
+		menu.addKeyListener(teclado);
+	}
+
+	@Override
+	public void desabilitar() {
+		menu.removeKeyListener(teclado);
 	}
 }

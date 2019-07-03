@@ -1,9 +1,11 @@
 package br.ufu.facom.pong.jogos.tenis.multiplayer;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,18 +26,13 @@ import br.ufu.facom.pong.jogos.tenis.objetosJogo.Mediador;
 import br.ufu.facom.pong.listeners.jogos.tenis.multiplayer.TecladoMultiplayerServer;
 
 public class TenisMultiplayerServer extends FPong implements Runnable{
-
 	private static final long serialVersionUID = 1L;
 
-	private final int UPDATE_RATE = 100;
-//	private final int PORTA_TCP_CLIENTE = 34129;
 	private final int PORTA_TCP_SERVIDOR = 34130;
 	private final int PORTA_UDP_CLIENTE = 51582;
 	private final int PORTA_UDP_SERVIDOR = 51583;
-
-	private Thread thread;
-	private Image img;
-	private Graphics g;
+	
+	private boolean conexaoEstabelecida = false;
 
 	// Objetos do jogo
 	private Mediador med;
@@ -58,8 +55,6 @@ public class TenisMultiplayerServer extends FPong implements Runnable{
 	}
 
 	protected void inicializar() {
-		img = createImage(LARGURA_TELA, ALTURA_TELA);
-		g = img.getGraphics();
 		jogadores = new Jogador[2];
 		jogadores[0] = new Jogador(this, 0, tamanhoBloco, med);
 		jogadores[1] = new Jogador(this, 1, tamanhoBloco, med);
@@ -85,14 +80,6 @@ public class TenisMultiplayerServer extends FPong implements Runnable{
 		thread.interrupt();
 	}
 
-	public void paint(Graphics g) {
-		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, this);
-	}
-
-	public void update(Graphics g) {
-		paint(g);
-	}
-
 	private void aguardarConexao() { 
 		ServerSocket serverSocketTCP;
 		Socket socket;
@@ -112,28 +99,58 @@ public class TenisMultiplayerServer extends FPong implements Runnable{
 	}
 	@Override
 	public void run() {
+		System.out.println("Aguardando conexão:");
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				while(!conexaoEstabelecida) {
+					desenhaMensagemEspera();
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		t.start();
 		aguardarConexao();
+		conexaoEstabelecida = true;
+		long lastTime = System.nanoTime();
+		final double ns = 1000000000.0 / 60.0;
+		double delta = 0;
 		while (true) {
-			desenhaCampo(g);
-			jogadores[0].desenharPontuacao(g);
-			jogadores[1].desenharPontuacao(g);
-			desenhaJogadores(jogadores, g);
-			bola.desenhar(g);
-			bola.mover();
-			jogadores[0].atualizar();
-			jogadores[1].atualizar();
-			try {
-				enviarDados();
-			} catch (IOException e) {
-				e.printStackTrace();
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			while (delta >= 1) {
+				atualizar();
+				delta--;
 			}
-			repaint();
-			try {
-				Thread.sleep((int) (1000 / UPDATE_RATE));
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
-			}
+			renderizar();
 		}
+	}
+	
+	private void atualizar() {
+		bola.mover();
+		jogadores[0].atualizar();
+		jogadores[1].atualizar();
+		try {
+			enviarDados();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void renderizar() {
+		g = img.getGraphics();
+		desenhaCampo(g);
+		jogadores[0].desenharPontuacao(g);
+		jogadores[1].desenharPontuacao(g);
+		desenhaJogadores(jogadores, g);
+		bola.desenhar(g);
+		g = bs.getDrawGraphics();
+		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, null);
+		bs.show();
 	}
 	
 	private void enviarDados() throws IOException {
@@ -168,5 +185,21 @@ public class TenisMultiplayerServer extends FPong implements Runnable{
 		g.fillRect(0, 0, LARGURA_TELA, TOPO_CAMPO);
 		g.fillRect(0, INFERIOR_CAMPO, LARGURA_TELA, TOPO_CAMPO);
 		g.fillRect((LARGURA_TELA >> 1) - (LARGURA_TELA >> 7), 0, LARGURA_TELA >> 7, ALTURA_TELA);
+	}
+	
+	private void desenhaMensagemEspera() {
+		Font f = new Font("monospace", Font.PLAIN, 90);;
+		FontRenderContext frc = new FontRenderContext(null, true, true);
+		String mensagem = "Aguardando jogador 2";
+		Color temp = g.getColor();
+		Rectangle2D r = f.getStringBounds(mensagem, frc);
+		int x = (LARGURA_TELA >> 1) - ((int) r.getWidth() >> 1);
+		int y = (ALTURA_TELA >> 1);
+		g.setFont(f);
+		g.drawString(mensagem, x, y + (ALTURA_TELA >> 3));
+		g.setColor(temp);
+		g = bs.getDrawGraphics();
+		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, null);
+		bs.show();
 	}
 }

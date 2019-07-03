@@ -2,7 +2,6 @@ package br.ufu.facom.pong.jogos.tenis.multiplayer;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -27,15 +26,9 @@ import br.ufu.facom.pong.listeners.jogos.tenis.multiplayer.TecladoMultiplayerCli
 public class TenisMultiplayerClient extends FPong implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	private final int UPDATE_RATE = 100;
-//	private final int PORTA_TCP_CLIENTE = 34129;
 	private final int PORTA_TCP_SERVIDOR = 34130;
 	private final int PORTA_UDP_CLIENTE = 51582;
 	private final int PORTA_UDP_SERVIDOR = 51583;
-
-	private Thread thread;
-	private Image img;
-	private Graphics g;
 
 	// Objetos do jogo
 	private Mediador med;
@@ -43,15 +36,15 @@ public class TenisMultiplayerClient extends FPong implements Runnable {
 	private Bola bola;
 	
 	//Dados multiplayer
-		private DatagramSocket serverSocket = null;
-		private MultiplayerData data;
-		InetAddress endereco;
-		byte[] receiveData;
-		DatagramPacket receivePacket;
-		ByteArrayOutputStream byteStream;
-		ObjectOutputStream os;
-		ObjectInputStream objetoEntrada = null;
-		ByteArrayInputStream streamEntrada = null;
+	private DatagramSocket serverSocket = null;
+	private MultiplayerData data;
+	InetAddress endereco;
+	byte[] receiveData;
+	DatagramPacket receivePacket;
+	ByteArrayOutputStream byteStream;
+	ObjectOutputStream os;
+	ObjectInputStream objetoEntrada = null;
+	ByteArrayInputStream streamEntrada = null;
 
 
 	public TenisMultiplayerClient(int velocidadeJogo, Rectangle tamanhoBloco, String endereco) {
@@ -85,8 +78,6 @@ public class TenisMultiplayerClient extends FPong implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		img = createImage(LARGURA_TELA, ALTURA_TELA);
-		g = img.getGraphics();
 		jogadores = new Jogador[2];
 		jogadores[0] = new Jogador(this, 0, tamanhoBloco, med);
 		jogadores[1] = new Jogador(this, 1, tamanhoBloco, med);
@@ -128,19 +119,29 @@ public class TenisMultiplayerClient extends FPong implements Runnable {
 
 	@Override
 	public void run() {
+		long lastTime = System.nanoTime();
+		final double ns = 1000000000.0 / 60.0;
+		double delta = 0;
 		while (true) {
-			desenhaCampo(g);
-			jogadores[0].desenharPontuacao(g);
-			jogadores[1].desenharPontuacao(g);
-			desenhaJogadores(jogadores, g);
-			bola.desenhar(g);
-			repaint();
-			try {
-				Thread.sleep((int) (1000 / UPDATE_RATE));
-			} catch (InterruptedException ie) {
-				System.err.print("Interrompido!\n" + ie);
-			}
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			while (delta >= 1)
+				delta--;
+			renderizar();
 		}
+	}
+	
+	private void renderizar() {
+		g = img.getGraphics();
+		desenhaCampo(g);
+		jogadores[0].desenharPontuacao(g);
+		jogadores[1].desenharPontuacao(g);
+		desenhaJogadores(jogadores, g);
+		bola.desenhar(g);
+		g = bs.getDrawGraphics();
+		g.drawImage(img, 0, 0, LARGURA_TELA, ALTURA_TELA, null);
+		bs.show();
 	}
 	
 	public void runMovimenta() {
