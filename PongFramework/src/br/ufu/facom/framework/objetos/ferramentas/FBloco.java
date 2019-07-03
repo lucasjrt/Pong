@@ -1,10 +1,10 @@
-package br.ufu.facom.framework.objetos.naoAbstratos;
+package br.ufu.facom.framework.objetos.ferramentas;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import br.ufu.facom.framework.objetos.abstratos.FMediador;
+import br.ufu.facom.framework.objetos.FMediador;
 
 public class FBloco {
 	private Rectangle bloco;			// O que vai ser renderizado

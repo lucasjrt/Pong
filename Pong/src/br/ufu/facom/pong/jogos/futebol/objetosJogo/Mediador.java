@@ -1,6 +1,6 @@
 package br.ufu.facom.pong.jogos.futebol.objetosJogo;
 
-import br.ufu.facom.framework.objetos.abstratos.FMediador;
+import br.ufu.facom.framework.objetos.FMediador;
 import br.ufu.facom.framework.utilitarios.FConstantes;
 import br.ufu.facom.pong.jogos.futebol.Futebol;
 
@@ -44,7 +44,7 @@ public class Mediador extends FMediador {
 	}
 
 	@Override
-	public void mover() {
+	public void atualizar() {
 		int aumVy = 0;
 		boolean colide = false;
 		if (colide(bola, jogadores[0]) != null) {

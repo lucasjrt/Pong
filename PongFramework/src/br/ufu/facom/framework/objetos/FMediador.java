@@ -1,4 +1,4 @@
-package br.ufu.facom.framework.objetos.abstratos;
+package br.ufu.facom.framework.objetos;
 
 public abstract class FMediador {
 	public FJogador[] jogadores;
@@ -12,7 +12,7 @@ public abstract class FMediador {
 		this.jogadores = jogadores;
 	}
 	
-	public abstract void mover();
+	public abstract void atualizar();
 	public abstract void pontua(int idJogador);
 	
 	public int getX(int idJogador) {

@@ -125,25 +125,21 @@ public class MenuJogo extends Menu{
 		
 		switch(selecionado[0]) {
 			case 0:
-				if(!multiplayer) // TODO: inverter condição
+				if(multiplayer) // TODO: inverter condição
+					// TODO: Adicionar Tenis multiplayer aqui
+					System.out.println(); // TODO: Apagar essa linha, tá aqui só pro if não ficar vazio
+				else
 					new Tenis(velocidade, modoJogo, tamanhoBloco);
-					//new Paredao(velocidade, tamanhoBloco);
-					// TODO: Descer esse construtor pro else e adicionar o de multiplayer aqui
-				//else
 				break;
 			case 1:
 				if(multiplayer)
 					// TODO: Construtor futebol multiplayer
-					System.out.println();
+					System.out.println(); // TODO: Apagar essa linha, tá aqui só pro if não ficar vazio
 				else
 					new Futebol(velocidade, modoJogo, tamanhoBloco);
-				// Futebol
 				break;
 			case 2:
-				if(!multiplayer) // TODO: Inverter condição
-					new Paredao(velocidade, tamanhoBloco);
-					// TODO: Descer construtor pro else e adicionar o de multiplayer aqui
-				else
+				new Paredao(velocidade, tamanhoBloco);
 				break;
 		}
 	}

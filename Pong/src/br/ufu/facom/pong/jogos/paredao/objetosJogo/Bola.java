@@ -1,6 +1,6 @@
 package br.ufu.facom.pong.jogos.paredao.objetosJogo;
 
-import br.ufu.facom.framework.objetos.abstratos.FBola;
+import br.ufu.facom.framework.objetos.FBola;
 import br.ufu.facom.framework.utilitarios.FConstantes;
 import br.ufu.facom.pong.jogos.paredao.Paredao;
 
@@ -37,7 +37,7 @@ public class Bola extends FBola{
 			vx = -vx;
 		}
 
-		med.mover();
+		med.atualizar();
 	}
 
 }

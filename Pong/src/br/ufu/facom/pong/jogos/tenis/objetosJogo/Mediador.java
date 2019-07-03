@@ -1,6 +1,6 @@
 package br.ufu.facom.pong.jogos.tenis.objetosJogo;
 
-import br.ufu.facom.framework.objetos.abstratos.FMediador;
+import br.ufu.facom.framework.objetos.FMediador;
 import br.ufu.facom.framework.utilitarios.FConstantes;
 import br.ufu.facom.pong.jogos.tenis.Tenis;
 
@@ -18,14 +18,14 @@ public class Mediador extends FMediador {
 
 	private Jogador colide(Bola bola, Jogador jogador) {
 		if ((bola.getEsquerda() <= jogador.getDireita()
-				&& bola.getDireita() >= jogador.getEsquerda() && jogador.getIdJogador() == 0)) { // Verificação horizontal
+				&& bola.getDireita() >= jogador.getEsquerda() && jogador.getIdJogador() == 0)) { // Verificacao horizontal
 			if (bola.getInferior() >= jogador.getTopo()
-					&& bola.getTopo() <= jogador.getInferior()) { // Verificação vertical
+					&& bola.getTopo() <= jogador.getInferior()) { // Verificacao vertical
 				bola.setPosicao(jogador.getDireita() + (FConstantes.TAMANHO_BOLA >> 1),
 						bola.getY());
 				return jogador;
-			} // Fim verificação vertical
-		} // Fim verificação horizontal
+			} // Fim verificacao vertical
+		} // Fim verificacao horizontal
 		if ((bola.getDireita() >= jogador.getEsquerda()
 				&& bola.getEsquerda() <= jogador.getDireita() && jogador.getIdJogador() == 1))
 			if (bola.getY() >= jogador.getY() - (jogo.tamanhoBloco.height >> 1)
@@ -42,7 +42,7 @@ public class Mediador extends FMediador {
 	}
 
 	@Override
-	public void mover() {
+	public void atualizar() {
 		int aumVy = 0;
 		boolean colide = false;
 		if (colide(bola, jogadores[0]) != null) {

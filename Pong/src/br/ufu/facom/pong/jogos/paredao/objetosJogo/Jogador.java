@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import br.ufu.facom.framework.objetos.abstratos.FJogador;
+import br.ufu.facom.framework.objetos.FJogador;
 import br.ufu.facom.pong.jogos.paredao.Paredao;
 
 public class Jogador extends FJogador {

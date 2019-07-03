@@ -1,11 +1,11 @@
-package br.ufu.facom.framework.objetos.abstratos;
+package br.ufu.facom.framework.objetos;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import br.ufu.facom.framework.FPong;
-import br.ufu.facom.framework.objetos.naoAbstratos.FDisplay;
+import br.ufu.facom.framework.objetos.ferramentas.FDisplay;
 import br.ufu.facom.framework.utilitarios.FConstantes;
 
 public abstract class FPontuacao {

@@ -3,8 +3,6 @@ package br.ufu.facom.pong.jogos.tenis;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import br.ufu.facom.framework.FPong;
 import br.ufu.facom.pong.jogos.tenis.objetosJogo.Bola;
@@ -17,11 +15,6 @@ import br.ufu.facom.pong.utilitarios.ModoJogo;
 public class Tenis extends FPong implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-
-	private Thread thread;
-	private BufferedImage img;
-	private BufferStrategy bs;
-	private Graphics g;
 
 	// Objetos do jogo
 	private Mediador med;
@@ -39,11 +32,6 @@ public class Tenis extends FPong implements Runnable {
 	}
 
 	protected void inicializar() {
-		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_RGB);
-		if(bs == null)
-			createBufferStrategy(2);
-		bs = getBufferStrategy();
-		g = img.getGraphics();
 		jogadores = new Jogador[2];
 		jogadores[0] = new Jogador(this, 0, tamanhoBloco, med);
 		jogadores[1] = new Jogador(this, 1, tamanhoBloco, med);

@@ -1,6 +1,6 @@
 package br.ufu.facom.pong.jogos.paredao.objetosJogo;
 
-import br.ufu.facom.framework.objetos.abstratos.FPontuacao;
+import br.ufu.facom.framework.objetos.FPontuacao;
 import br.ufu.facom.pong.jogos.paredao.Paredao;
 
 public class Pontuacao extends FPontuacao{

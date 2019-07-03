@@ -1,16 +1,24 @@
 package br.ufu.facom.framework;
 
 import java.awt.Canvas;
+import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
 public abstract class FPong extends Canvas {
 	private static final long serialVersionUID = 1L;
+	
+	protected Thread thread;
+	protected BufferedImage img;
+	protected BufferStrategy bs;
+	protected Graphics g;
 	
 	protected JFrame frame;
 	
@@ -34,6 +42,7 @@ public abstract class FPong extends Canvas {
 		TOPO_CAMPO = ALTURA_TELA >> 5;
 		INFERIOR_CAMPO = ALTURA_TELA - TOPO_CAMPO;
 		setSize(LARGURA_TELA, ALTURA_TELA);
+		preInicializar();
 		requestFocus();
 		addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
@@ -56,6 +65,14 @@ public abstract class FPong extends Canvas {
 		frame.setSize(LARGURA_TELA, ALTURA_TELA);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+	
+	private void preInicializar() {
+		img = new BufferedImage(LARGURA_TELA, ALTURA_TELA, BufferedImage.TYPE_INT_RGB);
+		if(bs == null)
+			createBufferStrategy(2);
+		bs = getBufferStrategy();
+		g = img.getGraphics();
 	}
 	
 	protected abstract void iniciar();

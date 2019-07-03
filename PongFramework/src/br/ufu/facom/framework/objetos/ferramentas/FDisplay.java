@@ -1,4 +1,4 @@
-package br.ufu.facom.framework.objetos.naoAbstratos;
+package br.ufu.facom.framework.objetos.ferramentas;
 
 import java.awt.Color;
 import java.awt.Graphics;
