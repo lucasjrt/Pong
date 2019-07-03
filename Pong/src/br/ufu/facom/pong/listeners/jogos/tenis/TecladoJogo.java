@@ -31,4 +31,5 @@ public class TecladoJogo implements KeyListener{
 	}
 
 	public void keyTyped(KeyEvent e) {}
+	
 }

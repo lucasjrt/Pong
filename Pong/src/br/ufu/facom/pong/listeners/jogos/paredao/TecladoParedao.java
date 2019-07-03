@@ -12,7 +12,6 @@ public class TecladoParedao implements KeyListener{
 		this.jogador = jogador;
 	}
 	
-	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_W)
 			jogador.movendo = jogador.CIMA;
@@ -20,12 +19,10 @@ public class TecladoParedao implements KeyListener{
 			jogador.movendo = jogador.BAIXO;
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		jogador.movendo = -1;
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {}
 
 }

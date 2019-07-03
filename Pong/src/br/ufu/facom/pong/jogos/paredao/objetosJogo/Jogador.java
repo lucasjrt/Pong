@@ -30,7 +30,6 @@ public class Jogador extends FJogador {
 		this.idJogador = idJogador;
 	}
 	
-	@Override
 	public int getPontuacao() {
 		if (idJogador == 0)
 			return super.getPontuacao();
@@ -38,7 +37,6 @@ public class Jogador extends FJogador {
 			return pontuacao2.getPontos();
 	}
 	
-	@Override
 	public void desenharPontuacao(Graphics g) {
 		pontuacao.desenhar(g);
 		pontuacao2.desenhar(g);

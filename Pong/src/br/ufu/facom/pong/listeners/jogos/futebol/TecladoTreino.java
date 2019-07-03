@@ -40,6 +40,5 @@ public class TecladoTreino implements KeyListener {
 		}
 	}
 
-	public void keyTyped(KeyEvent e) {
-	}
+	public void keyTyped(KeyEvent e) {}
 }

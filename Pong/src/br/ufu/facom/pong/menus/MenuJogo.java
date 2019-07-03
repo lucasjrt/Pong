@@ -81,7 +81,7 @@ public class MenuJogo extends Menu{
 	}
 		
 	public void submeter() {
-		ModoJogo modoJogo;
+		ModoJogo modoJogo = ModoJogo.JOGO;
 		int velocidade;
 		Rectangle tamanhoBloco;
 		frame.setVisible(false);
@@ -91,7 +91,7 @@ public class MenuJogo extends Menu{
 				break;
 			case 2:
 				multiplayer = true;
-				modoJogo = ModoJogo.MULTIPLAYER;
+				//modoJogo = ModoJogo.MULTIPLAYER;
 //				MenuMultiplayer mm = new MenuMultiplayer(this);
 				break;
 			default:

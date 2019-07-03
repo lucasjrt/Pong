@@ -12,7 +12,6 @@ public class FBloco {
 	public boolean colide;
 	
 	protected FMediador med;
-	
 	private Color cor;
 	
 	public FBloco(Rectangle bloco, int x, int y) {

@@ -24,12 +24,14 @@ public class Bola extends FBola {
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
 			if(Math.random() > 0.5)
 				vy = -vy;
+			vx = velocidade;
 		} else if (getEsquerda() - 2*FConstantes.TAMANHO_BOLA > jogo.LARGURA_TELA) {
 			med.pontua(0);
 			setPosicao(med.getX(0), med.getY(0) + jogo.VELOCIDADE_JOGO);	
 			vy = (int) (Math.random() * (jogo.VELOCIDADE_JOGO >> 1));
 			if(Math.random() > 0.5)
 				vy = -vy;
+			vx = velocidade;
 		}
 		med.atualizar();
 	}

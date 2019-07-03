@@ -19,7 +19,6 @@ public class TecladoTreino implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			jogadores[0].movendo = jogadores[0].BAIXO;
 			jogadores[1].movendo = jogadores[1].BAIXO;
-
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			jogadores[0].movendo = jogadores[0].CIMA;
 			jogadores[1].movendo = jogadores[1].CIMA;

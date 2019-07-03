@@ -29,7 +29,7 @@ public abstract class FJogador {
 		this.jogo = jogo;
 		this.idJogador = idJogador;
 		int largura = idJogador * jogo.LARGURA_TELA
-				+ (idJogador == 0 ? (tamanho.width >> 1) + 20 : -(tamanho.width >> 1) - 20);
+				+ (idJogador == 0 ? (tamanho.width >> 1) + 20 : - (tamanho.width >> 1) - 20);
 		int altura = (jogo.ALTURA_TELA >> 1);
 		this.bloco = new FBloco(new Rectangle(tamanho.width, tamanho.height), largura, altura);
 		velocidadeMovimento = 2 * jogo.VELOCIDADE_JOGO / 3;
@@ -88,6 +88,10 @@ public abstract class FJogador {
 
 	public void setMediador(FMediador med) {
 		this.med = med;
+	}
+	
+	public void setPosicao(int x, int y) {
+		bloco.setPosicao(x, y);
 	}
 
 	public int getX() {

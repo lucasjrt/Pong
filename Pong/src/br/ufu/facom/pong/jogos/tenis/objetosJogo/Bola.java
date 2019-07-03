@@ -1,12 +1,12 @@
 package br.ufu.facom.pong.jogos.tenis.objetosJogo;
 
+import br.ufu.facom.framework.FPong;
 import br.ufu.facom.framework.objetos.FBola;
-import br.ufu.facom.pong.jogos.tenis.Tenis;
 
 public class Bola extends FBola {
 	
-	private Tenis jogo;
-	public Bola(Tenis jogo) {
+	private FPong jogo;
+	public Bola(FPong jogo) {
 		super(jogo);
 		this.jogo = jogo;
 		setPosicao(jogo.LARGURA_TELA >> 1, jogo.ALTURA_TELA >> 1);
@@ -31,7 +31,6 @@ public class Bola extends FBola {
 			if(Math.random() > 0.5)
 				vy = -vy;
 		}
-
 		med.atualizar();
 	}
 }

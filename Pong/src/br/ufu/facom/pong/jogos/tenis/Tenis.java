@@ -41,7 +41,7 @@ public class Tenis extends FPong implements Runnable {
 		bola.comecarMover();
 		if (modoJogo == ModoJogo.JOGO)
 			addKeyListener(new TecladoJogo(jogadores));
-		else
+		if(modoJogo == ModoJogo.TREINO)
 			addKeyListener(new TecladoTreino(jogadores));
 	}
 

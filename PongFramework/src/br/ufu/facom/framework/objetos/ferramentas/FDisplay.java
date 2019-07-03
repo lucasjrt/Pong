@@ -133,7 +133,7 @@ public class FDisplay {
 	}
 
 	private Rectangle calculaRetangulo(int posicaoVetor) {
-		switch (posicaoVetor) {
+		switch(posicaoVetor) {
 			case 0 :
 				return new Rectangle(FConstantes.DISPLAY_LARGURA_NUMERO,
 						FConstantes.DISPLAY_EXPESSURA);
