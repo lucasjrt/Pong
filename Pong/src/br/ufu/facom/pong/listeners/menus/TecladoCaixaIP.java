@@ -24,8 +24,6 @@ public class TecladoCaixaIP implements KeyListener {
 		} else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
 			System.exit(0);
 	}
-	public void keyReleased(KeyEvent e) {
-	}
-	public void keyTyped(KeyEvent e) {
-	}
+	public void keyReleased(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {}
 }
