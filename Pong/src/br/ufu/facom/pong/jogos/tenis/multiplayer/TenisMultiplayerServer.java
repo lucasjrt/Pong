@@ -1,4 +1,4 @@
-package br.ufu.facom.pong.jogos.tenis.objetosJogo;
+package br.ufu.facom.pong.jogos.tenis.multiplayer;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,6 +18,10 @@ import java.net.Socket;
 import java.net.SocketException;
 
 import br.ufu.facom.framework.FPong;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Bola;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Jogador;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Mediador;
+import br.ufu.facom.pong.listeners.jogos.tenis.multiplayer.TecladoMultiplayerServer;
 
 public class TenisMultiplayerServer extends FPong implements Runnable{
 

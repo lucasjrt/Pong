@@ -1,4 +1,4 @@
-package br.ufu.facom.pong.jogos.tenis.objetosJogo;
+package br.ufu.facom.pong.listeners.jogos.tenis.multiplayer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,6 +9,9 @@ import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+
+import br.ufu.facom.pong.jogos.tenis.multiplayer.MultiplayerData;
+import br.ufu.facom.pong.jogos.tenis.objetosJogo.Jogador;
 
 public class TecladoMultiplayerClient implements KeyListener{
 	private Jogador[] jogadores;

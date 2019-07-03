@@ -8,8 +8,8 @@ import br.ufu.facom.framework.FPong;
 import br.ufu.facom.pong.jogos.tenis.objetosJogo.Bola;
 import br.ufu.facom.pong.jogos.tenis.objetosJogo.Jogador;
 import br.ufu.facom.pong.jogos.tenis.objetosJogo.Mediador;
-import br.ufu.facom.pong.listeners.jogos.tenis.TecladoJogo;
-import br.ufu.facom.pong.listeners.jogos.tenis.TecladoTreino;
+import br.ufu.facom.pong.listeners.jogos.tenis.singleplayer.TecladoJogo;
+import br.ufu.facom.pong.listeners.jogos.tenis.singleplayer.TecladoTreino;
 import br.ufu.facom.pong.utilitarios.ModoJogo;
 
 public class Tenis extends FPong implements Runnable {

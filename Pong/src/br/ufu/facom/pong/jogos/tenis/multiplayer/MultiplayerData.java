@@ -1,4 +1,4 @@
-package br.ufu.facom.pong.jogos.tenis.objetosJogo;
+package br.ufu.facom.pong.jogos.tenis.multiplayer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

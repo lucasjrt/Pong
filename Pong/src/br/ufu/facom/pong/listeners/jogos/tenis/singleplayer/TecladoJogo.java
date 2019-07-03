@@ -1,4 +1,4 @@
-package br.ufu.facom.pong.listeners.jogos.tenis;
+package br.ufu.facom.pong.listeners.jogos.tenis.singleplayer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

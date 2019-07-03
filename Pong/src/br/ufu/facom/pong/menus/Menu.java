@@ -76,6 +76,5 @@ public abstract class Menu extends JPanel {
 	}
 
 	public abstract void submeter();
-
 	protected abstract void desenhaMenu(Graphics g);
 }
