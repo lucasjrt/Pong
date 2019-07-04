@@ -1,11 +1,13 @@
 package br.ufu.facom.pong.menus;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.font.FontRenderContext;
 
 import javax.swing.JFrame;
@@ -27,9 +29,12 @@ public class Menu extends JPanel {
 	public boolean multiplayer;
 	
 	public Menu() {
-		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-		LARGURA_TELA = device.getDisplayMode().getWidth();
-		ALTURA_TELA = device.getDisplayMode().getHeight();
+		GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		//System.out.printf("Tolkit width: %d\nTolkit height: %d\nDevice width: %d\nDevice Height %d\n", device.getDisplayMode().getWidth(),device.getDisplayMode().getHeight(), (int) screenSize.getWidth(), (int) screenSize.getHeight());
+		LARGURA_TELA = (int) screenSize.getWidth();
+		ALTURA_TELA = (int) screenSize.getHeight();
 		inicializarFrame();
 		menuAtual = new MenuJogo(this);
 		menuAtual.habilitar();
@@ -87,8 +92,5 @@ public class Menu extends JPanel {
 	
 	public static void main(String[] args) {
 		new Menu();
-//		new MenuMultiplayer();
-//		new TenisMultiplayerServer(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO);
-//		new TenisMultiplayerClient(FConstantes.BOLA_VELOCIDADE_MEDIA, FConstantes.TAMANHO_BLOCO_MEDIO, "127.0.0.1");
 	}
 }

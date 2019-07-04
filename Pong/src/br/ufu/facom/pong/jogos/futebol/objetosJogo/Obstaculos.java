@@ -45,30 +45,28 @@ public class Obstaculos {
 			for (int i = 0; i < 3; i++) {
 				bloco.get(i).setPosicao(bloco.get(i).getX(), bloco.get(i).getY() - velocidadeMovimento);
 			}
-			if (bloco.get(0).getY() - FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO < 1
-					* (jogo.INFERIOR_CAMPO - jogo.TOPO_CAMPO) / 10)
+			if (bloco.get(0).getY() - FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO < 1)
 				Obstaculo1Subindo = false;
 		} else {
 			for (int i = 0; i < 3; i++) {
 				bloco.get(i).setPosicao(bloco.get(i).getX(), bloco.get(i).getY() + velocidadeMovimento);
 			}
-			if (bloco.get(2).getY() + FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO > 9
-					* (jogo.INFERIOR_CAMPO - jogo.TOPO_CAMPO) / 10)
+			if (bloco.get(2).getY() + FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO > 
+					 (jogo.INFERIOR_CAMPO - jogo.TOPO_CAMPO))
 				Obstaculo1Subindo = true;
 		}
 		if (Obstaculo2Subindo) {
 			for (int i = 3; i < 6; i++) {
 				bloco.get(i).setPosicao(bloco.get(i).getX(), bloco.get(i).getY() - velocidadeMovimento);
 			}
-			if (bloco.get(3).getY() - FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO < 1
-					* (jogo.INFERIOR_CAMPO - jogo.TOPO_CAMPO) / 10)
+			if (bloco.get(3).getY() - FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO < 1)
 				Obstaculo2Subindo = false;
 		} else {
 			for (int i = 3; i < 6; i++) {
 				bloco.get(i).setPosicao(bloco.get(i).getX(), bloco.get(i).getY() + velocidadeMovimento);
 			}
-			if (bloco.get(5).getY() + FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO > 9
-					* (jogo.INFERIOR_CAMPO - jogo.TOPO_CAMPO) / 10)
+			if (bloco.get(5).getY() + FConstantes.TAMANHO_BLOCO_PEQUENO.height / 2 - jogo.TOPO_CAMPO > 
+					 (jogo.INFERIOR_CAMPO - jogo.TOPO_CAMPO))
 				Obstaculo2Subindo = true;
 		}
 	}

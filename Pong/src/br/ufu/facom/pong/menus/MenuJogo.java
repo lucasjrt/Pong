@@ -17,8 +17,8 @@ import br.ufu.facom.pong.utilitarios.ModoJogo;
 public class MenuJogo extends TemplateMenu {
 	private String[] titulos = { "Estilo de jogo", "Modo de jogo", "Velocidade", "Tamanho do bloco" };
 
-	public String[][] conteudos = { { "Tênis", "Futebol", "Paredão" }, { "Jogo", "Treino", "Multiplayer" },
-			{ "Lento", "Médio", "Rápido", "Crescente" }, { "Pequeno", "Médio", "Grande" } };
+	public String[][] conteudos = { { "Tenis", "Futebol", "Paredao" }, { "Jogo", "Treino", "Multiplayer" },
+			{ "Lento", "Medio", "Rapido", "Crescente" }, { "Pequeno", "Medio", "Grande" } };
 
 	public Celula[] selecionado = new Celula[4]; // Posição do vetor de cada opção que está selecionada
 	public int atual = 0; // Opção do menu selecionada para ser modificada

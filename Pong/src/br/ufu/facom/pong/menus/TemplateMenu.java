@@ -17,7 +17,7 @@ public abstract class TemplateMenu {
 	}
 	
 	private void inicializar() {
-		img = new BufferedImage(menu.getWidth(), menu.getHeight(), BufferedImage.TYPE_INT_BGR);
+		img = new BufferedImage(menu.LARGURA_TELA, menu.ALTURA_TELA, BufferedImage.TYPE_INT_BGR);
 		g = img.getGraphics();
 	}
 	
